@@ -53,7 +53,7 @@ function InfoModal() {
             <AccordionItem value="item-1">
               <AccordionTrigger>Who is She?</AccordionTrigger>
               <AccordionContent>
-                The cutest little bean.{" "}
+                My super hot gf{" "}
                 <a
                   href="https://andcomputers.io/"
                   target="_blank"
