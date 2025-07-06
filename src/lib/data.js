@@ -14,7 +14,7 @@ export const CONNECTION_GAMES = [
     },
     {
       category: "Canoe Camp Core",
-      words: ["50 Days", "Ghouling", "Swamp Butt", "Tramp Foot"],
+      words: ["50 Days", "Ghouling", "Swamp Butt", "Trench Foot"],
       difficulty: 3,
       imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
     },
