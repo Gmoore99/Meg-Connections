@@ -19,14 +19,15 @@ function GameLostModal({ open, onClose, onPlayAgain }) {
   return (
     <BaseModal
       title={noMoreSets ? "No more games!" : "You failed your Meg-ducation."}
+      titleClassName="text-center text-xl font-bold"
       initiallyOpen={open}
       footerElements={
         noMoreSets
           ? []
           : [
               <ShareScoreButton key="share" />,
-              <Button key="play-again" onClick={handlePlayAgain}>
-                Play Again!
+              <Button key="New-game" onClick={handlePlayAgain}>
+                New Game!
               </Button>,
             ]
       }
@@ -40,7 +41,7 @@ function GameLostModal({ open, onClose, onPlayAgain }) {
         <>
           <div className="grid gap-y-2">
             <p className="text-lg font-[500] text-center">
-              You owe her dinner & a pint 🤪.
+              You owe Meg dinner & a pint 🤪.
             </p>
             {gameData.map((obj) => (
               <SolvedWordRow key={obj.category} {...obj} />
