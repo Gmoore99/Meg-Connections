@@ -90,36 +90,39 @@ function GameControlButtonsPanel({
   }
 
   return (
-    <div className="grid grid-cols-4 gap-2 sm:gap-4">
-      <Button
-        disabled={isGameOver}
-        variant="secondary"
-        onClick={() =>
-          setShuffledRows(shuffleGameData({ gameData: shuffledRows }))
-        }
-      >
-        <Shuffle className="h-4 w-4 mr-2" strokeWidth={1} />
-        <p className="select-none">Shuffle</p>
-      </Button>
-      <Button
-        size="deselectallsize"
-        disabled={isGameOver}
-        variant="secondary"
-        onClick={deselectAll}
-      >
-        <Undo className="h-4 w-4 mr-2" strokeWidth={1} />
-        <p className="select-none">Deselect All</p>
-      </Button>
-      <Button
-        variant="submit"
-        onClick={submitCandidateGuess}
-        disabled={isGameOver || guessCandidate.length !== categorySize}
-      >
-        <SendHorizontal className="h-4 w-4 mr-2" strokeWidth={1} />
-        <p className="select-none">Submit</p>
-      </Button>
-      {/* Add a fourth button or an empty div to fill the fourth column if needed */}
-      <div />
+    <div className="flex justify-center w-full">
+      <div className="grid grid-cols-3 gap-6 sm:gap-6 w-full max-w-lg">
+        <Button
+          size="lg"
+          disabled={isGameOver}
+          variant="secondary"
+          onClick={() =>
+            setShuffledRows(shuffleGameData({ gameData: shuffledRows }))
+          }
+        >
+          <Shuffle className="h-6 w-8 mr-2" strokeWidth={1} />
+          <p className="select-none">Shuffle</p>
+        </Button>
+        <Button
+          size="lg"
+          disabled={isGameOver}
+          variant="secondary"
+          onClick={deselectAll}
+        >
+          <Undo className="h-6 w-8 mr-2" strokeWidth={1} />
+          <p className="select-none">Deselect All</p>
+        </Button>
+        <Button
+          size="lg"
+          variant="submit"
+          onClick={submitCandidateGuess}
+          disabled={isGameOver || guessCandidate.length !== categorySize}
+        >
+          <SendHorizontal className="h-6 w-8 mr-2" strokeWidth={1} />
+          <p className="select-none">Submit</p>
+        </Button>
+        <div /> {/* Optional: Spacer for right, keeps buttons centered if you want 4 columns */}
+      </div>
     </div>
   );
 }
