@@ -40,7 +40,7 @@ function WordButton({ word, fullCandidateSize }) {
   //const fontSizeByWordLength = 9characters works with 0.6rem
 
   function getFontSize(word) {
-    const baseLength = 7;
+    const baseLength = 15;
     const wordLength = word.length;
     let fontSize = 1;
     if (wordLength > baseLength) {
@@ -54,19 +54,21 @@ function WordButton({ word, fullCandidateSize }) {
   }
   // word = "washingtonian";
   return (
-    <Toggle
-      className={`${styles.growShrink} select-none`}
-      variant="outline"
-      pressed={isSelected}
-      onClick={flipSelection}
-    >
-      <p
-        style={{ fontSize: getFontSize(word) }}
-        className="font-space-mono uppercase sm:text-xs md:text-xs"
+    <div className="grid grid-cols-4 gap-8">
+      <Toggle
+        className={`${styles.growShrink} select-none w-full min-w-[130px] py-6 min-h-[65px] bg-blue-100 border-2 border-gray-200 hover:bg-blue-200 transition-colors`}
+        variant="outline"
+        pressed={isSelected}
+        onClick={flipSelection}
       >
-        {word}
-      </p>
-    </Toggle>
+        <p
+          style={{ fontSize: getFontSize(word) }}
+          className="font-sans uppercase text-base sm:text-sm md:text-sm text-gray-600"
+        >
+          {word}
+        </p>
+      </Toggle>
+    </div>
   );
 }
 

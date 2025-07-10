@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../ui/button";
+import Button from "../ui/button";
 import { useToast } from "../ui/use-toast";
 import { Shuffle, Undo, SendHorizontal } from "lucide-react";
 import {
@@ -83,7 +83,7 @@ function GameControlButtonsPanel({
           label: "Notification",
           title: "Close Guess",
           description:
-            "You were one guess away from correctly guessing a category!",
+            "One guess away!",
         });
       }
     }

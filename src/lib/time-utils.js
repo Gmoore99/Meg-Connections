@@ -10,7 +10,8 @@ import {
 
 import queryString from "query-string";
 
-import { CONNECTION_GAMES } from "./data";
+import { getRandomGame } from "../lib/data";
+const categories = getRandomGame();
 
 export const getToday = () => startOfToday();
 export const getYesterday = () => startOfYesterday();
@@ -55,12 +56,20 @@ export const getPuzzleOfDay = (index, gameDate) => {
   const dateString = formatISO(gameDate, { representation: "date" });
   if (dateString === birthdayISO) {
     // Find the puzzle array where the first category is "Birthday"
-    return CONNECTION_GAMES.find(
-      puzzle => puzzle[0]?.category === "Meg Pub Core"
-    );
+    if (Array.isArray(categories)) {
+      return categories.find(
+        (puzzle) => puzzle[0]?.category === "Meg Pub Core"
+      );
+    } else if (categories === "COME_BACK_TOMORROW") {
+      // Handle the "come back tomorrow" case
+      return null; // or your fallback logic
+    }
   }
   // Default logic
-  return CONNECTION_GAMES[index % CONNECTION_GAMES.length];
+  if (Array.isArray(categories) && categories.length > 0) {
+    return categories[index % categories.length];
+  }
+  return null;
 };
 
 export const getSolution = (gameDate) => {

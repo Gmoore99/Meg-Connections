@@ -50,13 +50,12 @@ function GameStatusProvider({ children }) {
 
   // use effect to check if game is won
   React.useEffect(() => {
+    if (!gameData) return; // <-- Add this guard
     if (solvedGameData.length === gameData.length) {
       setIsGameOver(true);
       setIsGameWon(true);
     }
-    const gameState = { submittedGuesses, solvedGameData, gameData };
-    saveGameStateToLocalStorage(gameState);
-  }, [solvedGameData]);
+  }, [solvedGameData, gameData]);
 
   // use effect to check if all mistakes have been used and end the game accordingly
   React.useEffect(() => {

@@ -19,6 +19,9 @@ function getAllWordsOfGameData({ gameData }) {
 }
 
 export function shuffleGameData({ gameData }) {
+  if (!gameData || !Array.isArray(gameData) || !gameData[0]) {
+    return [];
+  }
   let categorySize;
   if (gameData[0]?.words) {
     categorySize = gameData[0].words.length;

@@ -6,9 +6,9 @@ import ShareScoreButton from "../../ShareScoreButton";
 import BaseModal from "../BaseModal";
 import { GameStatusContext } from "../../../providers/GameStatusProvider";
 import { PuzzleDataContext } from "../../../providers/PuzzleDataProvider";
-import { Button } from "../../ui/button";
+import Button from "../../ui/button";
 
-function ViewResultsModal() {
+function ViewResultsModal({ onPlayAgain }) {
   const { submittedGuesses } = React.useContext(GameStatusContext);
   const { gameData } = React.useContext(PuzzleDataContext);
 
@@ -31,6 +31,7 @@ function ViewResultsModal() {
           {generateEmojiGrid(gameData, submittedGuesses)}
         </span>
         <CountdownToNextPuzzle />
+        <Button onClick={onPlayAgain}>New Game!</Button>
       </div>
     </BaseModal>
   );

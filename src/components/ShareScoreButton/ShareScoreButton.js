@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "../../lib/utils";
 import Sparkles from "../Sparkles";
-import { Button } from "../ui/button";
+import Button from "../ui/button";
 import { useToast } from "../ui/use-toast";
 import { shareStatus } from "../../lib/share-game";
 import { GameStatusContext } from "../../providers/GameStatusProvider";

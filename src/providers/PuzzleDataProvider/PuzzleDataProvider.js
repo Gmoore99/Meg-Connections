@@ -1,15 +1,22 @@
 import React from "react";
-import { puzzleAnswers } from "../../lib/time-utils";
+import { getRandomGame } from "../../lib/data";
 
 export const PuzzleDataContext = React.createContext();
 
 function PuzzleDataProvider({ children }) {
-  const [gameData, setGameData] = React.useState(puzzleAnswers);
-  const categorySize = gameData[0].words.length;
-  const numCategories = gameData.length;
+  const [gameData, setGameData] = React.useState(() => getRandomGame());
+
+  // Don't block rendering if gameData is null; let modals handle it
+  if (gameData && !gameData[0]) {
+    return <div>Error: No game data available.</div>;
+  }
+
+  const categorySize = gameData ? gameData[0].words.length : 0;
+  const numCategories = gameData ? gameData.length : 0;
+
   return (
     <PuzzleDataContext.Provider
-      value={{ gameData, numCategories, categorySize }}
+      value={{ gameData, setGameData, numCategories, categorySize }}
     >
       {children}
     </PuzzleDataContext.Provider>
