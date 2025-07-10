@@ -90,38 +90,41 @@ function GameControlButtonsPanel({
   }
 
   return (
-    <div className="flex justify-center w-full">
-      <div className="grid grid-cols-3 gap-6 sm:gap-6 w-full max-w-lg">
+    <div className="w-full px-2 sm:px-0 flex justify-center">
+      <div className="grid grid-cols-3 gap-2 sm:gap-4 w-full max-w-2xl">
         <Button
-          size="lg"
+          size="base"
+          className="bg-amber-300 text-white hover:bg-amber-500"
           disabled={isGameOver}
           variant="secondary"
           onClick={() =>
             setShuffledRows(shuffleGameData({ gameData: shuffledRows }))
           }
         >
-          <Shuffle className="h-6 w-8 mr-2" strokeWidth={1} />
+          <Shuffle className="h-10 w-10 mr-3" strokeWidth={1} />
           <p className="select-none">Shuffle</p>
         </Button>
         <Button
-          size="lg"
+          size="base"
+          className="bg-amber-300 text-white hover:bg-amber-500"
           disabled={isGameOver}
           variant="secondary"
           onClick={deselectAll}
         >
-          <Undo className="h-6 w-8 mr-2" strokeWidth={1} />
+          <Undo className="h-10 w-10 mr-3" strokeWidth={1} />
           <p className="select-none">Deselect All</p>
         </Button>
         <Button
-          size="lg"
+          size="base"
+          className="bg-gray-400 text-white hover:bg-amber-500"
           variant="submit"
           onClick={submitCandidateGuess}
           disabled={isGameOver || guessCandidate.length !== categorySize}
         >
-          <SendHorizontal className="h-6 w-8 mr-2" strokeWidth={1} />
+          <SendHorizontal className="h-10 w-10 mr-3" strokeWidth={1} />
           <p className="select-none">Submit</p>
         </Button>
-        <div /> {/* Optional: Spacer for right, keeps buttons centered if you want 4 columns */}
+        <div /> {/* Spacer to keep buttons centered in 4 columns */}
       </div>
     </div>
   );
