@@ -1,5 +1,4 @@
 import React from "react";
-
 import { generateEmojiGrid } from "../../../lib/game-helpers";
 import CountdownToNextPuzzle from "../../CountdownToNextPuzzle";
 import ShareScoreButton from "../../ShareScoreButton";
@@ -14,24 +13,27 @@ function ViewResultsModal({ onPlayAgain }) {
 
   return (
     <BaseModal
-      title=""
+      title="View Results"
+      titleClassName="text-center text-3xl font-bold"
       trigger={
-        <Button variant="submit" className="w-full" children={"View Results"} />
+        <Button variant="submit" className="w-full">View Results</Button>
       }
       initiallyOpen={false}
       showActionButton={false}
-      footerElements={<ShareScoreButton buttonText={"Share Your Score!"} />}
+      footerElements={[
+        <ShareScoreButton key="share" />,
+        <Button key="New-game" onClick={onPlayAgain}>
+          New Game!
+        </Button>,
+      ]}
     >
-      <div className="flex flex-col place-content-center">
-        <p className="text-center font-[600]">
-          Your Guesses Are Represented Below
-        </p>
+      <p className="text-center">{"Your Guesses Are Represented Below"}</p>
+      <div className="flex flex-col items-center justify-center">
         <span className="text-center whitespace-pre mb-2">
           {"\n"}
           {generateEmojiGrid(gameData, submittedGuesses)}
         </span>
         <CountdownToNextPuzzle />
-        <Button onClick={onPlayAgain}>New Game!</Button>
       </div>
     </BaseModal>
   );
