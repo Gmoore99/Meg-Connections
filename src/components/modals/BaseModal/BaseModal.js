@@ -20,6 +20,7 @@ function BaseModal({
   children,
   actionButtonText = "Continue",
   showActionButton = true,
+  titleClassName = "",
 }) {
   const [isOpen, setIsOpen] = React.useState(initiallyOpen);
 
@@ -42,7 +43,7 @@ function BaseModal({
         }}
       >
         <AlertDialogHeader>
-          <AlertDialogTitle>{title}</AlertDialogTitle>
+          <h2 className={`modal-title ${titleClassName}`}>{title}</h2>
           <AlertDialogDescription>{children}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

@@ -104,30 +104,28 @@ function GameGrid({ gameRows, shouldGridShake, setShouldGridShake }) {
     isGameActive && solvedGameData.length > 0;
 
   return (
-    <div className="max-w-3xl mx-auto px-2 sm:px-0">
-      <div>
-        {(isGameOverAndWon || isGameActiveWithAnySolvedRows) && (
-          <div className="grid gap-y-2 pb-2">
-            {solvedGameData.map((solvedRowObj) => (
-              <SolvedWordRow key={solvedRowObj.category} {...solvedRowObj} />
-            ))}
-          </div>
-        )}
-        {isGameActive && (
-          <div className={`grid grid-cols-4 gap-2 sm:gap-4 ${shouldGridShake ? styles.shake : ""}`}>
-            {gameRows.flat().map((word) => (
-              <WordButton key={word} word={word} fullCandidateSize={gameRows.flat().length} />
-            ))}
-          </div>
-        )}
-        {isGameOverAndLost && (
-          <div className="grid gap-y-2 pb-2">
-            <p>The answer categories are below.</p>
-            {gameData.map((obj) => (
-              <SolvedWordRow key={obj.category} {...obj} />
-            ))}
-          </div>
-        )}
+    <div className="w-full max-w-3xl mx-auto px-2 sm:px-4">
+      {/* Solved answers section */}
+      {solvedGameData.length > 0 && (
+        <div className="grid gap-y-2 pb-2">
+          {solvedGameData.map((solvedRowObj) => (
+            <SolvedWordRow key={solvedRowObj.category} {...solvedRowObj} />
+          ))}
+        </div>
+      )}
+      {/* Active grid */}
+      <div className="grid grid-cols-4 gap-2 sm:gap-4 w-full">
+        {gameRows
+          .flat()
+          .filter(
+            (word) =>
+              !solvedGameData.some((solvedRow) =>
+                solvedRow.words.includes(word)
+              )
+          )
+          .map((word) => (
+            <WordButton key={word} word={word} fullCandidateSize={gameRows.flat().length} />
+          ))}
       </div>
     </div>
   );

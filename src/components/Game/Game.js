@@ -96,11 +96,11 @@ function Game() {
 
   return (
     <>
-      <h3 className="text-xl text-center mt-4">
+      <h3 className="text-lg text-center mt-16">
         Create {numCategories} groups of {categorySize}
       </h3>
 
-      <div className="game-wrapper">
+      <div className="game-wrapper mt-16">
         {isGameOver && isGameWon ? (
           <GameWonModal
             open={isEndGameModalOpen}

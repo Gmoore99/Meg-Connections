@@ -54,21 +54,19 @@ function WordButton({ word, fullCandidateSize }) {
   }
   // word = "washingtonian";
   return (
-    <div className="grid grid-cols-4 gap-8">
-      <Toggle
-        className={`${styles.growShrink} select-none w-full min-w-[130px] py-6 min-h-[65px] bg-blue-100 border-2 border-gray-200 hover:bg-blue-200 transition-colors`}
-        variant="outline"
-        pressed={isSelected}
-        onClick={flipSelection}
+    <Toggle
+      className={`${styles.growShrink} w-full min-w-0 py-3 sm:py-6 min-h-[48px] sm:min-h-[65px] bg-blue-100 border-2 border-gray-200 hover:bg-blue-200 transition-colors`}
+      variant="outline"
+      pressed={isSelected}
+      onClick={flipSelection}
+    >
+      <p
+        style={{ fontSize: getFontSize(word) }}
+        className="font-sans uppercase text-xs sm:text-base md:text-base text-gray-600 text-center break-words"
       >
-        <p
-          style={{ fontSize: getFontSize(word) }}
-          className="font-sans uppercase text-base sm:text-sm md:text-sm text-gray-600"
-        >
-          {word}
-        </p>
-      </Toggle>
-    </div>
+        {word}
+      </p>
+    </Toggle>
   );
 }
 

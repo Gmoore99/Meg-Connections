@@ -19,6 +19,7 @@ function GameWonModal({ open, onClose, submittedGuesses, onPlayAgain }) {
   return (
     <BaseModal
       title={noMoreSets ? "No more games!" : "You won the game!"}
+      titleClassName="text-center text-3xl font-bold"
       initiallyOpen={open}
       footerElements={
         noMoreSets
@@ -38,8 +39,8 @@ function GameWonModal({ open, onClose, submittedGuesses, onPlayAgain }) {
         </div>
       ) : (
         <>
-          <p>{"Great job, share your results!"}</p>
-          <div className="justify-center">
+          <p className="text-center">{"Great job, share your results!"}</p>
+          <div className="flex flex-col items-center justify-center">
             <span className="text-center whitespace-pre">
               {"\n"}
               {generateEmojiGrid(gameData, submittedGuesses)}
