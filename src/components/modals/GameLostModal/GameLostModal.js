@@ -40,7 +40,7 @@ function GameLostModal({ open, onClose, onPlayAgain }) {
       ) : (
         <>
           <div className="grid gap-y-2">
-            <p className="text-lg font-[500] text-center">
+            <p className="font-thin pb-2 pl-4 text-gray-800 text-center">
               You owe Meg dinner & a pint 🤪.
             </p>
             {gameData.map((obj) => (

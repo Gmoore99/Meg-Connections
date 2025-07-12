@@ -55,14 +55,18 @@ function WordButton({ word, fullCandidateSize }) {
   // word = "washingtonian";
   return (
     <Toggle
-      className={`${styles.growShrink} w-full min-w-0 py-3 sm:py-6 min-h-[48px] sm:min-h-[65px] bg-blue-100 border-2 border-gray-200 hover:bg-blue-200 transition-colors`}
+      className={`w-full min-w-0 py-3 sm:py-6 min-h-[48px] sm:min-h-[65px] 
+    bg-sky-200 border-2 border-gray-200 transition-colors
+    hover:bg-sky-600 hover:text-white
+    data-[state=on]:bg-sky-600 data-[state=on]:text-white
+  `}
       variant="outline"
       pressed={isSelected}
       onClick={flipSelection}
     >
       <p
         style={{ fontSize: getFontSize(word) }}
-        className="font-sans uppercase text-xs sm:text-base md:text-base text-gray-600 text-center break-words"
+        className="font-sans uppercase text-xs sm:text-base md:text-base text-center break-words"
       >
         {word}
       </p>
