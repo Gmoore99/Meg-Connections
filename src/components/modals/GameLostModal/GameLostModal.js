@@ -12,8 +12,8 @@ function GameLostModal({ open, onClose, onPlayAgain }) {
   const noMoreSets = !gameData;
 
   function handlePlayAgain() {
-    if (onPlayAgain) onPlayAgain();
-    if (onClose) onClose();
+    if (onPlayAgain) onPlayAgain(); // resets game status and loads next set
+    if (onClose) onClose();         // closes the modal
   }
 
   return (

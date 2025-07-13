@@ -12,8 +12,8 @@ function GameWonModal({ open, onClose, submittedGuesses, onPlayAgain }) {
   const noMoreSets = !gameData;
 
   function handlePlayAgain() {
-    if (onPlayAgain) onPlayAgain();
-    if (onClose) onClose();
+    if (onPlayAgain) onPlayAgain(); // resets game status and loads next set
+    if (onClose) onClose();         // closes the modal
   }
 
   return (
@@ -39,7 +39,7 @@ function GameWonModal({ open, onClose, submittedGuesses, onPlayAgain }) {
         </div>
       ) : (
         <>
-          <p className="text-center">{"Great job, share your results!"}</p>
+          <p className="text-center">Great job, share your results!</p>
           <div className="flex flex-col items-center justify-center">
             <span className="text-center whitespace-pre">
               {"\n"}

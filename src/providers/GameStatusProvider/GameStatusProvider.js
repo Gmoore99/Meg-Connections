@@ -67,6 +67,14 @@ function GameStatusProvider({ children }) {
     saveGameStateToLocalStorage(gameState);
   }, [submittedGuesses]);
 
+  function resetGameStatus() {
+    setSolvedGameData([]);
+    setSubmittedGuesses([]);
+    setIsGameOver(false);
+    setIsGameWon(false);
+    setGuessCandidate([]);
+  }
+
   return (
     <GameStatusContext.Provider
       value={{
@@ -79,6 +87,7 @@ function GameStatusProvider({ children }) {
         setSubmittedGuesses,
         guessCandidate,
         setGuessCandidate,
+        resetGameStatus,
       }}
     >
       {children}

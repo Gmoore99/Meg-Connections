@@ -13,15 +13,15 @@ import ViewResultsModal from "../modals/ViewResultsModal";
 import { getRandomGame } from "../../lib/data";
 
 function Game() {
-  const { gameData, categorySize, numCategories, setGameData } =
-    React.useContext(PuzzleDataContext);
   const {
     resetGameStatus,
-    solvedGameData = [],
-    submittedGuesses = [],
+    solvedGameData,
     isGameOver,
     isGameWon,
+    submittedGuesses,
   } = React.useContext(GameStatusContext);
+
+  const { gameData, setGameData, numCategories, categorySize } = React.useContext(PuzzleDataContext);
 
   const [shuffledRows, setShuffledRows] = React.useState(
     shuffleGameData({ gameData })
@@ -36,8 +36,8 @@ function Game() {
     setGridShake(false);
     setShowConfetti(false);
     setIsEndGameModalOpen(false);
-    if (typeof resetGameStatus === "function") resetGameStatus();
-  }, [gameData, resetGameStatus]);
+    // Do NOT call resetGameStatus here!
+  }, [gameData]);
 
   // Update Game Grid after a row has been correctly solved
   React.useEffect(() => {
@@ -68,12 +68,10 @@ function Game() {
   }, [isGameOver, isGameWon]);
 
   function handlePlayAgain() {
+    resetGameStatus();
+    // Load next game set
     const newGame = getRandomGame();
-    if (newGame) {
-      setGameData(newGame);
-      setIsEndGameModalOpen(false);
-    }
-    // If newGame is null, do nothing (modal stays open)
+    setGameData(newGame);
   }
 
   if (!gameData) {
