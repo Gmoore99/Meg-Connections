@@ -12,13 +12,13 @@ function GameLostModal({ open, onClose, onPlayAgain }) {
   const noMoreSets = !gameData;
 
   function handlePlayAgain() {
-    if (onPlayAgain) onPlayAgain(); // resets game status and loads next set
-    if (onClose) onClose();         // closes the modal
+    if (onPlayAgain) onPlayAgain();
+    if (onClose) onClose();
   }
 
   return (
     <BaseModal
-      title={noMoreSets ? "No more games!" : "You failed your Meg-ducation."}
+      title={noMoreSets ? "That's All, Come Back Next Year!!" : "You failed your Meg-ducation."}
       titleClassName="text-center text-xl font-bold"
       initiallyOpen={open}
       footerElements={
@@ -34,8 +34,16 @@ function GameLostModal({ open, onClose, onPlayAgain }) {
       showActionButton={false}
     >
       {noMoreSets ? (
-        <div style={{ textAlign: "center", fontSize: "2rem" }}>
-          Come back next year
+        <div style={{ textAlign: "center", fontSize: "1.5rem" }}>
+          Happy 30th Birthday Meg ❤️❤️
+          <br />
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <img
+              src="https://i.postimg.cc/7ZBgqVgT/Screenshot-2025-07-13-at-19-01-55.png"
+              alt="Birthday Meg"
+              style={{ marginTop: "1rem", maxWidth: "250px", width: "100%", borderRadius: "14px" }}
+            />
+          </div>
         </div>
       ) : (
         <>

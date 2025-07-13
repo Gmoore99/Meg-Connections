@@ -10,7 +10,7 @@ import { PuzzleDataContext } from "../../providers/PuzzleDataProvider";
 import { GameStatusContext } from "../../providers/GameStatusProvider";
 import GameControlButtonsPanel from "../GameControlButtonsPanel";
 import ViewResultsModal from "../modals/ViewResultsModal";
-import { getRandomGame } from "../../lib/data";
+import { getNextGame } from "../../lib/data";
 
 function Game() {
   const {
@@ -21,7 +21,7 @@ function Game() {
     submittedGuesses,
   } = React.useContext(GameStatusContext);
 
-  const { gameData, setGameData, numCategories, categorySize } = React.useContext(PuzzleDataContext);
+  const { gameData, setGameData, numCategories, categorySize, loadNextGame } = React.useContext(PuzzleDataContext);
 
   const [shuffledRows, setShuffledRows] = React.useState(
     shuffleGameData({ gameData })
@@ -36,7 +36,6 @@ function Game() {
     setGridShake(false);
     setShowConfetti(false);
     setIsEndGameModalOpen(false);
-    // Do NOT call resetGameStatus here!
   }, [gameData]);
 
   // Update Game Grid after a row has been correctly solved
@@ -69,26 +68,19 @@ function Game() {
 
   function handlePlayAgain() {
     resetGameStatus();
-    // Load next game set
-    const newGame = getRandomGame();
-    setGameData(newGame);
+    loadNextGame();
   }
 
-  if (!gameData) {
-    // All sets used, let the modal handle the UI
+  const { gameData: contextGameData } = React.useContext(PuzzleDataContext);
+
+  if (!contextGameData) {
+    // Always show the modal when there are no more sets
     return (
-      <>
-        <GameWonModal
-          open={isEndGameModalOpen && isGameWon}
-          onClose={() => setIsEndGameModalOpen(false)}
-          submittedGuesses={submittedGuesses}
-        />
-        <GameLostModal
-          open={isEndGameModalOpen && !isGameWon}
-          onClose={() => setIsEndGameModalOpen(false)}
-          onPlayAgain={handlePlayAgain}
-        />
-      </>
+      <GameLostModal
+        open={true}
+        onClose={() => {}}
+        onPlayAgain={() => {}}
+      />
     );
   }
 

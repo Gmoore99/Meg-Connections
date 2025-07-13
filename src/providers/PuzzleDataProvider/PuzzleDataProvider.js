@@ -1,22 +1,35 @@
 import React from "react";
-import { getRandomGame } from "../../lib/data";
+import { getNextGame, resetUsedCategories } from "../../lib/data";
 
 export const PuzzleDataContext = React.createContext();
 
 function PuzzleDataProvider({ children }) {
-  const [gameData, setGameData] = React.useState(() => getRandomGame());
+  const [gameData, setGameData] = React.useState(() => getNextGame());
 
-  // Don't block rendering if gameData is null; let modals handle it
-  if (gameData && !gameData[0]) {
-    return <div>Error: No game data available.</div>;
-  }
+  // Helper to always get the next set
+  const loadNextGame = React.useCallback(() => {
+    setGameData(getNextGame());
+  }, []);
 
-  const categorySize = gameData ? gameData[0].words.length : 0;
+  // Optionally, add a reset function for replaying from the start
+  const resetAllGames = React.useCallback(() => {
+    resetUsedCategories();
+    setGameData(getNextGame());
+  }, []);
+
+  const categorySize = gameData?.[0]?.words.length || 0;
   const numCategories = gameData ? gameData.length : 0;
 
   return (
     <PuzzleDataContext.Provider
-      value={{ gameData, setGameData, numCategories, categorySize }}
+      value={{
+        gameData,
+        setGameData,
+        numCategories,
+        categorySize,
+        loadNextGame,    // use this in your Game.js handlePlayAgain
+        resetAllGames,   // optional: use for a "reset all" button
+      }}
     >
       {children}
     </PuzzleDataContext.Provider>

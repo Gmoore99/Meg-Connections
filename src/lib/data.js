@@ -131,31 +131,31 @@ export const CATEGORY_SETS = [
 
 // --- Game Logic ---
 
-export function getRandomGame() {
-  const usedSetIndices = JSON.parse(localStorage.getItem("usedSetIndices") || "[]");
-  const availableIndices = CATEGORY_SETS
-    .map((set, idx) => (!usedSetIndices.includes(idx) ? idx : null))
-    .filter(idx => idx !== null);
-
-  if (availableIndices.length === 0) {
-    return null; // No more sets
+export function getNextGame() {
+  const currentIndex = parseInt(localStorage.getItem("currentSetIndex") || "0", 10);
+  if (currentIndex >= CATEGORY_SETS.length) {
+    return null;
   }
-
-  const randomIdx = availableIndices[Math.floor(Math.random() * availableIndices.length)];
-  const pickedSet = CATEGORY_SETS[randomIdx];
-  const newUsedSetIndices = [...usedSetIndices, randomIdx];
-  localStorage.setItem("usedSetIndices", JSON.stringify(newUsedSetIndices));
+  const pickedSet = CATEGORY_SETS[currentIndex];
+  localStorage.setItem("currentSetIndex", (currentIndex + 1).toString());
   return pickedSet;
 }
 
 export function resetUsedCategories() {
-  localStorage.removeItem("usedSetIndices");
+  localStorage.setItem("currentSetIndex", "0");
 }
 
-// --- (Optional) PuzzleDataProvider (move to its own file for best practice) ---
+// --- PuzzleDataContext ---
 
 export const PuzzleDataContext = React.createContext();
 
 export function PuzzleDataProvider({ children }) {
-  const [gameData, setGameData] = React.useState(() => getRandomGame());
+  const [gameData, setGameData] = React.useState(() => getNextGame());
+
+  return (
+    <PuzzleDataContext.Provider value={{ gameData, setGameData }}>
+      {children}
+    </PuzzleDataContext.Provider>
+  );
+}
 

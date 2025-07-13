@@ -9,9 +9,7 @@ import {
 } from "date-fns";
 
 import queryString from "query-string";
-
-import { getRandomGame } from "../lib/data";
-const categories = getRandomGame();
+import { CATEGORY_SETS } from "../lib/data"; // Use ordered sets
 
 export const getToday = () => startOfToday();
 export const getYesterday = () => startOfYesterday();
@@ -42,12 +40,10 @@ export const isValidGameDate = (date) => {
 export const getIndex = (gameDate) => {
   let start = firstGameDate;
   let index = -1;
-  console.log(firstGameDate);
   do {
     index++;
     start = addDays(start, periodInDays);
   } while (start <= gameDate);
-
   return index;
 };
 
@@ -56,18 +52,16 @@ export const getPuzzleOfDay = (index, gameDate) => {
   const dateString = formatISO(gameDate, { representation: "date" });
   if (dateString === birthdayISO) {
     // Find the puzzle array where the first category is "Birthday"
-    if (Array.isArray(categories)) {
-      return categories.find(
-        (puzzle) => puzzle[0]?.category === "Meg Pub Core"
-      );
-    } else if (categories === "COME_BACK_TOMORROW") {
-      // Handle the "come back tomorrow" case
-      return null; // or your fallback logic
-    }
+    return CATEGORY_SETS.find(
+      (puzzle) => puzzle[0]?.category === "Meg Pub Core"
+    );
   }
-  // Default logic
-  if (Array.isArray(categories) && categories.length > 0) {
-    return categories[index % categories.length];
+  // Default logic: play sets in order
+  if (Array.isArray(CATEGORY_SETS) && CATEGORY_SETS.length > 0) {
+    if (index >= CATEGORY_SETS.length) {
+      return null; // No more puzzles, show "come back next year"
+    }
+    return CATEGORY_SETS[index];
   }
   return null;
 };
@@ -75,8 +69,7 @@ export const getPuzzleOfDay = (index, gameDate) => {
 export const getSolution = (gameDate) => {
   const nextGameDate = getNextGameDate(gameDate);
   const index = getIndex(gameDate);
-  const puzzleOfTheDay = getPuzzleOfDay(index, gameDate); // pass gameDate here
-  console.log("index for today: ", index);
+  const puzzleOfTheDay = getPuzzleOfDay(index, gameDate);
   return {
     puzzleAnswers: puzzleOfTheDay,
     puzzleGameDate: gameDate,
@@ -102,7 +95,6 @@ export const setGameDate = (d) => {
 };
 
 export const getIsLatestGame = () => {
-  // https://github.com/cwackerfuss/react-wordle/pull/505
   const parsed = queryString.parse(window.location.search);
   return parsed === null || !("d" in parsed);
 };
