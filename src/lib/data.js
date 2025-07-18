@@ -10,7 +10,7 @@ export const ALL_CATEGORIES = [
   },
   {
     category: "Meg's Dislikes",
-    words: ["Blue Cheese", "Mornings", "Technology", "Slow Walkers"],
+    words: ["Blue Cheese", "Early Mornings", "Dark Chocolate", "Slow Walkers"],
     difficulty: 2,
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
@@ -21,7 +21,7 @@ export const ALL_CATEGORIES = [
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
   {
-    category: "Words that Contain Meg",
+    category: "Words that Contain m-e-g",
     words: ["Emergency", "Homegirl", "Game", "Segment"],
     difficulty: 4,
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
@@ -88,17 +88,41 @@ export const ALL_CATEGORIES = [
   },
   {
     category: "Meg's Love Languages",
-    words: ["Memes", "Unexpected Hugs", "Food", "Quality Time"],
+    words: ["Memes", "Unexpected Hugs", "Sharing Food", "Quality Time"],
     difficulty: 3,
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
   {
-    category: "Things Meg is 'Keen' On",
-    words: ["Sports", "Cooking", "Pub", "Running"],
+    category: "Peak Meg Behaviour",
+    words: ["Same Song on Repeat for Weeks", "Worlds Fastest Eater", "Licking Plates Clean", "Memorising Train Timetables"],
     difficulty: 4,
-    imageSrc: "https://i.ibb.co/pP1xn0Z/Connections.png",
+    imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
-];
+  {
+    category: "Things The Scare Meg",
+    words: ["Technology", "Driving", "Snakes", "Evil Incompetance"],
+    difficulty: 1,
+    imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
+  },
+  {
+    category: "Types of Gravy",
+    words: ["Young", "Instant", "Baby", "Chicken"],
+    difficulty: 2,
+    imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
+  },
+  {
+    category: "Homophones for Megs Friends",
+    words: ["Leo", "New", "Gnat", "Whinny"],
+    difficulty: 3,
+    imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
+  },
+  {
+    category: "Rouge Superpowers",
+    words: ["Memorising Train Timetables", "Alchohol Tolorance", "Worlds Fastest Eater", "Infiniate Kindness"],
+    difficulty: 4,
+    imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
+  }
+]; // <-- This closes the ALL_CATEGORIES array!
 
 // --- Category Sets (always grouped together) ---
 export const CATEGORY_SETS = [
@@ -106,7 +130,7 @@ export const CATEGORY_SETS = [
     ALL_CATEGORIES.find(cat => cat.category === "Meg Pub Core"),
     ALL_CATEGORIES.find(cat => cat.category === "Meg's Dislikes"),
     ALL_CATEGORIES.find(cat => cat.category === "Canoe Camp Core"),
-    ALL_CATEGORIES.find(cat => cat.category === "Words that Contain Meg"),
+    ALL_CATEGORIES.find(cat => cat.category === "Words that Contain m-e-g"),
   ],
   [
     ALL_CATEGORIES.find(cat => cat.category === "Roads Meg has Lived On"),
@@ -124,7 +148,13 @@ export const CATEGORY_SETS = [
     ALL_CATEGORIES.find(cat => cat.category === "Ingredients in Meg's Pesto Pasta"),
     ALL_CATEGORIES.find(cat => cat.category === "Hammersmith FC Accolades"),
     ALL_CATEGORIES.find(cat => cat.category === "Meg's Love Languages"),
-    ALL_CATEGORIES.find(cat => cat.category === "Things Meg is 'Keen' On"),
+    ALL_CATEGORIES.find(cat => cat.category === "Peak Meg Behaviour"),
+  ],
+  [
+    ALL_CATEGORIES.find(cat => cat.category === "Things The Scare Meg"),
+    ALL_CATEGORIES.find(cat => cat.category === "Types of Gravy"),
+    ALL_CATEGORIES.find(cat => cat.category === "Homophones for Megs Friends"),
+    ALL_CATEGORIES.find(cat => cat.category === "Rouge Superpowers"),
   ],
   // Add more sets as needed
 ];
