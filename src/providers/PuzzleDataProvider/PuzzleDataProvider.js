@@ -11,7 +11,7 @@ function getCurrentGame() {
   return CATEGORY_SETS[currentIndex];
 }
 
-function PuzzleDataProvider({ children }) {
+export function PuzzleDataProvider({ children }) {
   const [gameData, setGameData] = React.useState(() => getCurrentGame());
 
   // Helper to always get the next set

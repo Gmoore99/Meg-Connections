@@ -93,8 +93,8 @@ export const ALL_CATEGORIES = [
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
   {
-    category: "Peak Meg Behaviour",
-    words: ["Same Song on Repeat for Weeks", "Worlds Fastest Eater", "Licking Plates Clean", "Memorising Train Timetables"],
+    category: "Types of Gravy",
+    words: ["Young", "Instant", "Baby", "Chicken"],
     difficulty: 4,
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
@@ -105,8 +105,8 @@ export const ALL_CATEGORIES = [
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
   {
-    category: "Types of Gravy",
-    words: ["Young", "Instant", "Baby", "Chicken"],
+    category: "Things Meg's Weirdly Knowledgeable on",
+    words: ["Harry Potter", "Train Timetables", "Model UN", "Heat Pumps"],
     difficulty: 2,
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
@@ -117,8 +117,8 @@ export const ALL_CATEGORIES = [
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
   {
-    category: "Rouge Superpowers",
-    words: ["Memorising Train Timetables", "Alchohol Tolorance", "Worlds Fastest Eater", "Infiniate Kindness"],
+    category: "MEGa __",
+    words: ["Byte", "Watt", "Phone", "Star"],
     difficulty: 4,
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   }
@@ -148,13 +148,13 @@ export const CATEGORY_SETS = [
     ALL_CATEGORIES.find(cat => cat.category === "Ingredients in Meg's Pesto Pasta"),
     ALL_CATEGORIES.find(cat => cat.category === "Hammersmith FC Accolades"),
     ALL_CATEGORIES.find(cat => cat.category === "Meg's Love Languages"),
-    ALL_CATEGORIES.find(cat => cat.category === "Peak Meg Behaviour"),
+    ALL_CATEGORIES.find(cat => cat.category === "Types of Gravy"),
   ],
   [
     ALL_CATEGORIES.find(cat => cat.category === "Things The Scare Meg"),
-    ALL_CATEGORIES.find(cat => cat.category === "Types of Gravy"),
+    ALL_CATEGORIES.find(cat => cat.category === "Things Meg's Weirdly Knowledgeable on"),
     ALL_CATEGORIES.find(cat => cat.category === "Homophones for Megs Friends"),
-    ALL_CATEGORIES.find(cat => cat.category === "Rouge Superpowers"),
+    ALL_CATEGORIES.find(cat => cat.category === "MEGa __"),
   ],
   // Add more sets as needed
 ];
@@ -171,6 +171,14 @@ export function getNextGame() {
   return pickedSet;
 }
 
+export function getCurrentGame() {
+  const currentIndex = parseInt(localStorage.getItem("currentSetIndex") || "0", 10);
+  if (currentIndex >= CATEGORY_SETS.length) {
+    return null;
+  }
+  return CATEGORY_SETS[currentIndex];
+}
+
 export function resetUsedCategories() {
   localStorage.setItem("currentSetIndex", "0");
 }
@@ -180,10 +188,22 @@ export function resetUsedCategories() {
 export const PuzzleDataContext = React.createContext();
 
 export function PuzzleDataProvider({ children }) {
-  const [gameData, setGameData] = React.useState(() => getNextGame());
+  const [gameData, setGameData] = React.useState(() => getCurrentGame());
+
+  const loadNextGame = () => {
+    const currentIndex = parseInt(localStorage.getItem("currentSetIndex") || "0", 10);
+    const nextIndex = currentIndex + 1;
+    if (nextIndex >= CATEGORY_SETS.length) {
+      localStorage.setItem("currentSetIndex", CATEGORY_SETS.length);
+      setGameData(null);
+    } else {
+      localStorage.setItem("currentSetIndex", nextIndex.toString());
+      setGameData(CATEGORY_SETS[nextIndex]);
+    }
+  };
 
   return (
-    <PuzzleDataContext.Provider value={{ gameData, setGameData }}>
+    <PuzzleDataContext.Provider value={{ gameData, setGameData, loadNextGame }}>
       {children}
     </PuzzleDataContext.Provider>
   );
