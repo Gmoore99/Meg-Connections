@@ -1,23 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import Header from "../Header";
 import Game from "../Game";
-
+import LandingPage from "../LandingPage/LandingPage";
 import { Toaster } from "../ui/toaster";
 import PuzzleDataProvider from "../../providers/PuzzleDataProvider";
 import GameStatusProvider from "../../providers/GameStatusProvider";
 
 function App() {
-  useEffect(() => {
-    localStorage.clear(); // This will reset the game every time the page loads
-  }, []);
+  const [started, setStarted] = useState(false);
 
   return (
     <PuzzleDataProvider>
       <GameStatusProvider>
         <div className="wrapper">
           <Toaster />
-          <Header />
-          <Game />
+          <Header isLandingPage={!started} />
+          {!started && <LandingPage onStart={() => setStarted(true)} />}
+          {started && <Game />}
         </div>
       </GameStatusProvider>
     </PuzzleDataProvider>
