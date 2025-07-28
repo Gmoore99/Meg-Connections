@@ -10,14 +10,25 @@ function Header({ activeGame }) {
   return (
     <header className="relative flex flex-col items-center">
       <div className="flex w-full items-center justify-center mt-12 mb-4 relative">
-        {/* On mobile, add padding-right to h1 to prevent overlap with info button */}
-        <h1 className="pt-serif-bold text-center w-full text-xl sm:text-4xl pr-16 sm:pr-0">
+        <h1 className="pt-serif-bold text-center w-full text-base xs:text-lg sm:text-2xl md:text-4xl transition-all">
           {title}
         </h1>
-        {/* Hide info button if on landing page (no activeGame) */}
+        {/* Responsive info button, shrinks on small screens */}
         {activeGame && (
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 sm:right-8">
-            {activeGame === "wordle" ? <WordleInfoModal /> : <InfoModal />}
+          <div className="absolute right-2 top-1/2 -translate-y-1/2 sm:right-8">
+            <div className="w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center">
+              {activeGame === "wordle" ? (
+                <WordleInfoModal
+                  buttonClassName="w-8 h-8 sm:w-12 sm:h-12"
+                  iconClassName="w-5 h-5 sm:w-7 sm:h-7"
+                />
+              ) : (
+                <InfoModal
+                  buttonClassName="w-8 h-8 sm:w-12 sm:h-12"
+                  iconClassName="w-5 h-5 sm:w-7 sm:h-7"
+                />
+              )}
+            </div>
           </div>
         )}
       </div>
