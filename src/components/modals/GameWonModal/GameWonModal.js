@@ -25,8 +25,15 @@ function GameWonModal({ open, onClose, submittedGuesses, onPlayAgain }) {
         noMoreSets
           ? []
           : [
-              <ShareScoreButton key="share" />,
-              <Button key="New-game" onClick={handlePlayAgain}>
+              <ShareScoreButton
+                key="share"
+                className="px-4 py-2 bg-fuchsia-400 text-white rounded font-bold hover:bg-fuchsia-600"
+              />,
+              <Button
+                key="New-game"
+                onClick={handlePlayAgain}
+                className="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-800"
+              >
                 New Game!
               </Button>,
             ]
@@ -35,7 +42,7 @@ function GameWonModal({ open, onClose, submittedGuesses, onPlayAgain }) {
     >
       {noMoreSets ? (
         <div style={{ textAlign: "center", fontSize: "1.5rem" }}>
-          Happy 30th Birthday Meg ❤️❤️
+          Happy Birthday Meg ❤️❤️
           <br />
           <div style={{ display: "flex", justifyContent: "center" }}>
             <img

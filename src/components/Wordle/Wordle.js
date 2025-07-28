@@ -1,0 +1,257 @@
+import React, { useState, useEffect } from "react";
+import Confetti from "react-confetti";
+import JSConfetti from "js-confetti"; // <-- Add this import
+// import { useNavigate } from "react-router-dom"; // <-- Add this import
+import "./wordle-flip.css";
+import WordleGamesWonModal from "./WordleGamesWonModal";
+import WordleNewGameButton from "./WordleNewGameButton";
+import WordleShareButton from "./WordleShareButton";
+import WordleGameLostModal from "./WordleGameLostModal";
+
+// List of words to use, each only once
+const WORD_LIST = ["CANOE", "CLEAT", "PESTO", "ANGEL", "YOUNG", "SORRY"];
+
+const KEYBOARD_ROWS = [
+  ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+  ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+  ["Z", "X", "C", "V", "B", "N", "M"],
+];
+
+// Modal for "That's all, come back next year!"
+function WordleAllDoneModal({ open }) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50">
+      <div className="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center">
+        <h2 className="text-2xl font-bold mb-4 text-center">That's All, Come Back Next Year!!</h2>
+        <img
+          src="https://i.postimg.cc/7ZBgqVgT/Screenshot-2025-07-13-at-19-01-55.png"
+          alt="Birthday Meg"
+          style={{ marginTop: "1rem", maxWidth: "250px", width: "100%", borderRadius: "14px" }}
+        />
+        <button
+          className="mt-8 px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-800"
+          onClick={() => window.location.href = "/"}
+        >
+          Home Page
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default function Wordle() {
+  // const navigate = useNavigate(); // <-- Add this line
+
+  // Track which word we're on
+  const [wordIndex, setWordIndex] = useState(() => {
+    const saved = localStorage.getItem("wordleWordIndex");
+    return saved ? parseInt(saved, 10) : 0;
+  });
+  const [guesses, setGuesses] = useState([]);
+  const [currentGuess, setCurrentGuess] = useState("");
+  const [status, setStatus] = useState("playing");
+  const [showAllDone, setShowAllDone] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  // Add a ref to store jsConfetti instance
+  const jsConfettiRef = React.useRef(null);
+
+  useEffect(() => {
+    if (!jsConfettiRef.current) {
+      jsConfettiRef.current = new JSConfetti();
+    }
+  }, []);
+
+  // If all words are used, show the "all done" modal
+  const allDone = wordIndex >= WORD_LIST.length;
+
+  // Set answer for the current word
+  const answer = allDone ? "" : WORD_LIST[wordIndex];
+
+  // Save word index to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("wordleWordIndex", wordIndex);
+  }, [wordIndex]);
+
+  // Keyboard input
+  useEffect(() => {
+    if (status !== "playing" || allDone) return;
+    const handleKeyDown = (e) => {
+      if (status !== "playing" || allDone) return;
+      const key = e.key.toUpperCase();
+      if (key === "ENTER") {
+        if (currentGuess.length === 5) handleSubmit();
+      } else if (key === "BACKSPACE") {
+        setCurrentGuess((g) => g.slice(0, -1));
+      } else if (/^[A-Z]$/.test(key) && currentGuess.length < 5) {
+        setCurrentGuess((g) => g + key);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [currentGuess, status, allDone]);
+
+  // Letter coloring logic
+  const getLetterStatus = (guess) => {
+    return guess.split("").map((char, idx) => {
+      if (char === answer[idx]) return "bg-green-500";
+      if (answer.includes(char)) return "bg-yellow-400";
+      return "bg-gray-400";
+    });
+  };
+
+  // Keyboard coloring logic
+  const getKeyColor = (key) => {
+    let color = "";
+    guesses.forEach((guess) => {
+      guess.split("").forEach((char, idx) => {
+        if (char === key && char === answer[idx]) color = "bg-green-500";
+        else if (char === key && answer.includes(char) && color !== "bg-green-500") color = "bg-yellow-400";
+        else if (char === key && !answer.includes(char) && color === "") color = "bg-gray-600";
+      });
+    });
+    return color;
+  };
+
+  // Handle virtual keyboard
+  const handleKeyClick = (key) => {
+    if (status !== "playing" || allDone) return;
+    if (key === "ENTER") {
+      if (currentGuess.length === 5) handleSubmit();
+    } else if (key === "DEL") {
+      setCurrentGuess((g) => g.slice(0, -1));
+    } else if (currentGuess.length < 5 && /^[A-Z]$/.test(key)) {
+      setCurrentGuess((g) => g + key);
+    }
+  };
+
+  // Handle guess submission
+  const handleSubmit = () => {
+    if (currentGuess.length !== 5) return;
+    const newGuesses = [...guesses, currentGuess];
+    setGuesses(newGuesses);
+    setCurrentGuess("");
+    if (currentGuess === answer) {
+      setShowConfetti(true);
+      if (jsConfettiRef.current) {
+        jsConfettiRef.current.addConfetti({
+          emojis: ["🎉", "🎊", "✨", "🥳", "🎈"],
+          emojiSize: 60,
+          confettiNumber: 120,
+        });
+      }
+      setTimeout(() => {
+        setShowConfetti(false);
+        setStatus("won");
+      }, 1200);
+    } else if (newGuesses.length === 6) {
+      setStatus("lost");
+    }
+  };
+
+  // Start a new game with the next word
+  const startNewGame = () => {
+    if (wordIndex + 1 >= WORD_LIST.length) {
+      setShowAllDone(true); // Show the all done modal if all words are used
+      return;
+    }
+    setGuesses([]);
+    setCurrentGuess("");
+    setStatus("playing");
+    setWordIndex((idx) => idx + 1);
+  };
+
+  // Only show the WordleAllDoneModal when all words are completed and user clicks "New Game"
+  if (showAllDone) {
+    return <WordleAllDoneModal open={true} />;
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-start min-h-screen bg-black-100 pt-8">
+      {showConfetti && <Confetti width={window.innerWidth} height={window.innerHeight} />}
+      <h2 className="text-4xl font-bold mb-2 text-white">Meg's NYT Birthday Wordle</h2>
+      <div className="flex flex-col gap-2 mb-6">
+        {[...Array(6)].map((_, i) => {
+          const guess =
+            guesses[i] ||
+            (i === guesses.length && status === "playing" ? currentGuess : "");
+          const colors =
+            i < guesses.length
+              ? getLetterStatus(guesses[i])
+              : [];
+
+          return (
+            <div key={i} className="flex gap-2">
+              {[...Array(5)].map((_, j) => {
+                const letter = guess[j] || "";
+                const tileColor =
+                  i < guesses.length && letter
+                    ? colors[j] || "bg-gray-400 border-gray-400 text-black"
+                    : "bg-gray-200 border-gray-200 text-black";
+                return (
+                  <div
+                    key={j}
+                    className={`w-12 h-12 flex items-center justify-center rounded border-2 text-2xl font-bold ${tileColor}`}
+                  >
+                    {letter}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+      {status === "playing" && (
+        <div className="flex flex-col gap-2">
+          {KEYBOARD_ROWS.map((row, i) => (
+            <div key={i} className="flex gap-2 justify-center">
+              {i === 2 && (
+                <button
+                  type="button"
+                  className="bg-gray-400 text-black font-bold py-2 px-4 rounded"
+                  onClick={() => handleKeyClick("ENTER")}
+                >
+                  Enter
+                </button>
+              )}
+              {row.map((key) => (
+                <button
+                  key={key}
+                  type="button"
+                  className={`w-10 h-12 rounded font-bold text-lg ${getKeyColor(key) || "bg-gray-300 text-black"} hover:bg-gray-400`}
+                  onClick={() => handleKeyClick(key)}
+                >
+                  {key}
+                </button>
+              ))}
+              {i === 2 && (
+                <button
+                  type="button"
+                  className="bg-gray-400 text-black font-bold py-2 px-4 rounded"
+                  onClick={() => handleKeyClick("DEL")}
+                >
+                  Del
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+      <WordleGamesWonModal
+        open={status === "won"}
+        onClose={() => setStatus("playing")}
+        guesses={guesses}
+        answer={answer}
+        onNewGame={startNewGame}
+      />
+      <WordleGameLostModal
+        open={status === "lost"}
+        onClose={() => setStatus("playing")}
+        guesses={guesses}
+        answer={answer}
+        onNewGame={startNewGame} // This already uses the correct logic
+      />
+    </div>
+  );
+}

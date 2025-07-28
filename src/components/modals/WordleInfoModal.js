@@ -1,16 +1,15 @@
 import React from "react";
-import { MAX_MISTAKES } from "../../../lib/constants";
 import { HelpCircle } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
+import BaseModal from "../modals/BaseModal";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../../ui/accordion";
-import BaseModal from "../BaseModal";
+} from "../ui/accordion";
 
-function InfoModal() {
+function WordleInfoModal() {
   return (
     <BaseModal
       title=""
@@ -20,47 +19,40 @@ function InfoModal() {
         </button>
       }
       initiallyOpen={false}
-      showActionButton={true}
       actionButtonText="Got It!"
-      actionButtonClassName="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-400"
-      footerElements={
-        <button
-          className="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-400"
-          onClick={() => (window.location.href = "/")}
-        >
-          Home
-        </button>
-      }
     >
       <Tabs defaultValue="how-to-play">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="how-to-play">How To Play</TabsTrigger>
-          <TabsTrigger value="About-Meg">About Meg</TabsTrigger>
+          <TabsTrigger value="about-meg">About Meg</TabsTrigger>
         </TabsList>
         <TabsContent value="how-to-play">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger>What's The Goal?</AccordionTrigger>
               <AccordionContent>
-                Find groups of items or names that share something in common.
+                Guess the secret Meg-themed five letter word in six tries or less!
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger>How Do I Play?</AccordionTrigger>
               <AccordionContent>
-                Select the items and tap 'Submit' to check if your guess matches
-                one of the answer categories.
+                Enter a valid five letter word and press Enter. The color of the tiles will change to show how close your guess was to the word.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
-              <AccordionTrigger>How Many Tries Do I Get?</AccordionTrigger>
+              <AccordionTrigger>What do the colors mean?</AccordionTrigger>
               <AccordionContent>
-                {`You can make ${MAX_MISTAKES} mistakes before the game ends.`}
+                <ul className="list-disc ml-4">
+                  <li><span className="font-bold text-green-600">Green</span>: Correct letter in the correct spot.</li>
+                  <li><span className="font-bold text-yellow-500">Yellow</span>: Correct letter in the wrong spot.</li>
+                  <li><span className="font-bold text-gray-600">Gray</span>: Letter is not in the word.</li>
+                </ul>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
         </TabsContent>
-        <TabsContent value="About-Meg">
+        <TabsContent value="about-meg">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger>Who is She?</AccordionTrigger>
@@ -70,8 +62,9 @@ function InfoModal() {
                   href="https://andcomputers.io/"
                   target="_blank"
                   className="underline font-bold"
+                  rel="noopener noreferrer"
                 >
-                
+                  andcomputers.io
                 </a>
               </AccordionContent>
             </AccordionItem>
@@ -79,7 +72,6 @@ function InfoModal() {
               <AccordionTrigger>Why did I put this together?</AccordionTrigger>
               <AccordionContent>
                 <p className="mb-1">Because I'm a Simp</p>
-               
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
@@ -99,4 +91,4 @@ function InfoModal() {
   );
 }
 
-export default InfoModal;
+export default WordleInfoModal;

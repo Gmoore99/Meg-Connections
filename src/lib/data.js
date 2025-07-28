@@ -11,7 +11,7 @@ export const ALL_CATEGORIES = [
   {
     category: "Meg's Dislikes",
     words: ["Blue Cheese", "Early Mornings", "Dark Chocolate", "Slow Walkers"],
-    difficulty: 2,
+    difficulty: 3,
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
   {
@@ -27,8 +27,8 @@ export const ALL_CATEGORIES = [
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
   {
-    category: "Roads Meg has Lived On",
-    words: ["Arica", "St Urbains", "Tanners Hill", "Sherbrooke"],
+    category: "When people might tell Meg to slow down",
+    words: ["Running", "Eating", "Walking", "Public Speaking"],
     difficulty: 1,
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
@@ -127,15 +127,21 @@ export const ALL_CATEGORIES = [
 // --- Category Sets (always grouped together) ---
 export const CATEGORY_SETS = [
   [
-    ALL_CATEGORIES.find(cat => cat.category === "Meg Pub Core"),
-    ALL_CATEGORIES.find(cat => cat.category === "Meg's Dislikes"),
+    ALL_CATEGORIES.find(cat => cat.category === "When people might tell Meg to slow down"),
+    ALL_CATEGORIES.find(cat => cat.category === "Meg's Halloween Costumes"),
     ALL_CATEGORIES.find(cat => cat.category === "Canoe Camp Core"),
     ALL_CATEGORIES.find(cat => cat.category === "Words that Contain m-e-g"),
   ],
+   [
+    ALL_CATEGORIES.find(cat => cat.category === "Ingredients in Meg's Pesto Pasta"),
+    ALL_CATEGORIES.find(cat => cat.category === "Hammersmith FC Accolades"),
+    ALL_CATEGORIES.find(cat => cat.category === "Meg's Love Languages"),
+    ALL_CATEGORIES.find(cat => cat.category === "Types of Gravy"),
+  ],
   [
-    ALL_CATEGORIES.find(cat => cat.category === "Roads Meg has Lived On"),
+    ALL_CATEGORIES.find(cat => cat.category === "Meg Pub Core"),
     ALL_CATEGORIES.find(cat => cat.category === "Things Typically Found in Megs Bag"),
-    ALL_CATEGORIES.find(cat => cat.category === "Meg's Halloween Costumes"),
+    ALL_CATEGORIES.find(cat => cat.category === "Meg's Dislikes"),
     ALL_CATEGORIES.find(cat => cat.category === "Words Used in Meg's Spotify Day List"),
   ],
   [
@@ -143,12 +149,6 @@ export const CATEGORY_SETS = [
     ALL_CATEGORIES.find(cat => cat.category === "Famous Megs"),
     ALL_CATEGORIES.find(cat => cat.category === "Things Meg Might Text You"),
     ALL_CATEGORIES.find(cat => cat.category === "Little Miss Characters Meg Identifies With"),
-  ],
-  [
-    ALL_CATEGORIES.find(cat => cat.category === "Ingredients in Meg's Pesto Pasta"),
-    ALL_CATEGORIES.find(cat => cat.category === "Hammersmith FC Accolades"),
-    ALL_CATEGORIES.find(cat => cat.category === "Meg's Love Languages"),
-    ALL_CATEGORIES.find(cat => cat.category === "Types of Gravy"),
   ],
   [
     ALL_CATEGORIES.find(cat => cat.category === "Things The Scare Meg"),

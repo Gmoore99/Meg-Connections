@@ -53,7 +53,7 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        sans: ["'PT Serif'", "serif", ...fontFamily.sans],
       },
       keyframes: {
         "accordion-down": {
@@ -71,7 +71,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      "space-mono": ["Space Mono"],
+      "pt-serif": ["'PT Serif'", "serif"],
     },
   },
   plugins: [require("tailwindcss-animate")],

@@ -1,22 +1,59 @@
 import React from "react";
-import favicon from "../../assets/favicon.png";
 
-export default function LandingPage({ onStart }) {
+export default function LandingPage({ onStartConnections, onStartWordle }) {
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-black-100 pt-32">
-      <button
-        className="bg-purple-400 hover:bg-black-500 text-white font-bold py-6 px-12 rounded-lg text-5xl flex flex-col items-center gap-4"
-        onClick={onStart}
-        style={{ borderRadius: "1rem" }}
-      >
-        <img
-          src={favicon}
-          alt="Meg Connections Logo"
-          className="w-20 h-20 mb-2"
-          style={{ display: "block" }}
-        />
-        Connections
-      </button>
+      <div className="flex flex-col gap-8">
+        {/* Connections Button with label */}
+        <div className="flex flex-row items-center gap-8">
+          <button
+            className="focus:outline-none"
+            onClick={onStartConnections}
+            style={{ borderRadius: "1rem" }}
+          >
+            <img
+              src="https://i.postimg.cc/Y2Gvv4Sg/Screenshot-2025-07-28-at-11-19-33.png"
+              alt="Meg's Connections"
+              className="w-24 h-24 object-contain"
+              style={{ display: "block", borderRadius: "1rem" }}
+            />
+          </button>
+          <span
+            className="font-pt-serif text-3xl font-bold text-black flex flex-col leading-tight"
+            style={{
+              letterSpacing: "1px",
+            }}
+          >
+            <span>Meg&apos;s</span>
+            <span>Connections</span>
+          </span>
+        </div>
+        {/* Wordle Button with label */}
+        <div className="flex flex-row items-center gap-8">
+          <button
+            className="focus:outline-none"
+            onClick={onStartWordle}
+            style={{ borderRadius: "1rem" }}
+          >
+            <img
+              src="https://i.postimg.cc/1Xns4Ncz/Screenshot-2025-07-28-at-11-19-23.png"
+              alt="Meg's Wordle"
+              className="w-24 h-24 object-contain"
+              style={{ display: "block", borderRadius: "1rem" }}
+            />
+          </button>
+          <span
+            className="font-pt-serif text-3xl font-bold text-black flex flex-col leading-tight"
+            style={{
+              letterSpacing: "1px",
+            }}
+          >
+            <span>Meg&apos;s</span>
+            <span>Wordle</span>
+          </span>
+        </div>
+        {/* InfoModal removed from here */}
+      </div>
     </div>
   );
 }
