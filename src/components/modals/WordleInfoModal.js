@@ -20,6 +20,15 @@ function WordleInfoModal() {
       }
       initiallyOpen={false}
       actionButtonText="Got It!"
+      actionButtonClassName="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-400"
+      footerElements={
+        <button
+          className="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-400"
+          onClick={() => (window.location.href = "/")}
+        >
+          Home
+        </button>
+      }
     >
       <Tabs defaultValue="how-to-play">
         <TabsList className="grid w-full grid-cols-2">
