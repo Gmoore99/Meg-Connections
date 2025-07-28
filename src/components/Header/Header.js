@@ -13,9 +13,12 @@ function Header({ activeGame }) {
         <h1 className="pt-serif-bold text-center w-full text-xl sm:text-4xl">
           {title}
         </h1>
-        <div className="absolute right-4 top-1/2 -translate-y-1/2 sm:right-8">
-          {activeGame === "wordle" ? <WordleInfoModal /> : <InfoModal />}
-        </div>
+        {/* Hide info button if on landing page (no activeGame) */}
+        {activeGame && (
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 sm:right-8">
+            {activeGame === "wordle" ? <WordleInfoModal /> : <InfoModal />}
+          </div>
+        )}
       </div>
       <div className="w-full border-b-2 border-gray-300 mb-4"></div>
     </header>
