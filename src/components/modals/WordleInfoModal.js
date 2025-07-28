@@ -14,8 +14,8 @@ function WordleInfoModal() {
     <BaseModal
       title=""
       trigger={
-        <button className="bg-purple-200 text-black w-12 h-12 flex items-center justify-center rounded-full">
-          <HelpCircle className="w-7 h-7" />
+        <button className="bg-purple-200 text-black w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full">
+          <HelpCircle className="w-6 h-6 sm:w-7 sm:h-7" />
         </button>
       }
       initiallyOpen={false}

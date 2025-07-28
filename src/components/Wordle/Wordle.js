@@ -168,10 +168,10 @@ export default function Wordle() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen bg-black-100 pt-8">
+    <div className="flex flex-col items-center justify-start min-h-screen bg-black-100 pt-8 px-2">
       {showConfetti && <Confetti width={window.innerWidth} height={window.innerHeight} />}
-      <h2 className="text-4xl font-bold mb-2 text-white">Meg's NYT Birthday Wordle</h2>
-      <div className="flex flex-col gap-2 mb-6">
+      <h2 className="text-2xl sm:text-4xl font-bold mb-2 text-white text-center">Meg's NYT Birthday Wordle</h2>
+      <div className="flex flex-col gap-2 mb-6 w-full max-w-xs sm:max-w-md mx-auto">
         {[...Array(6)].map((_, i) => {
           const guess =
             guesses[i] ||
@@ -182,7 +182,7 @@ export default function Wordle() {
               : [];
 
           return (
-            <div key={i} className="flex gap-2">
+            <div key={i} className="flex gap-1 sm:gap-2 justify-center">
               {[...Array(5)].map((_, j) => {
                 const letter = guess[j] || "";
                 const tileColor =
@@ -192,7 +192,7 @@ export default function Wordle() {
                 return (
                   <div
                     key={j}
-                    className={`w-12 h-12 flex items-center justify-center rounded border-2 text-2xl font-bold ${tileColor}`}
+                    className={`w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center rounded border-2 text-lg sm:text-2xl font-bold ${tileColor}`}
                   >
                     {letter}
                   </div>
@@ -203,13 +203,13 @@ export default function Wordle() {
         })}
       </div>
       {status === "playing" && (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1 sm:gap-2 w-full max-w-xs sm:max-w-md mx-auto">
           {KEYBOARD_ROWS.map((row, i) => (
-            <div key={i} className="flex gap-2 justify-center">
+            <div key={i} className="flex gap-1 sm:gap-2 justify-center">
               {i === 2 && (
                 <button
                   type="button"
-                  className="bg-gray-400 text-black font-bold py-2 px-4 rounded"
+                  className="bg-gray-400 text-black font-bold py-1 px-2 sm:py-2 sm:px-4 rounded text-xs sm:text-base"
                   onClick={() => handleKeyClick("ENTER")}
                 >
                   Enter
@@ -219,7 +219,7 @@ export default function Wordle() {
                 <button
                   key={key}
                   type="button"
-                  className={`w-10 h-12 rounded font-bold text-lg ${getKeyColor(key) || "bg-gray-300 text-black"} hover:bg-gray-400`}
+                  className={`w-7 h-8 sm:w-10 sm:h-12 rounded font-bold text-base sm:text-lg ${getKeyColor(key) || "bg-gray-300 text-black"} hover:bg-gray-400`}
                   onClick={() => handleKeyClick(key)}
                 >
                   {key}
@@ -228,7 +228,7 @@ export default function Wordle() {
               {i === 2 && (
                 <button
                   type="button"
-                  className="bg-gray-400 text-black font-bold py-2 px-4 rounded"
+                  className="bg-gray-400 text-black font-bold py-1 px-2 sm:py-2 sm:px-4 rounded text-xs sm:text-base"
                   onClick={() => handleKeyClick("DEL")}
                 >
                   Del
