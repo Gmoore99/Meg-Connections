@@ -11,7 +11,7 @@ function Header({ activeGame }) {
     <header className="relative flex flex-col items-center w-full">
       {/* Info button absolutely positioned in the top right of the header */}
       {activeGame && (
-        <div className="absolute top-4 right-4 z-10">
+        <div className="absolute top-6 right-4 z-10">
           <div className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center">
             {activeGame === "wordle" ? (
               <WordleInfoModal
