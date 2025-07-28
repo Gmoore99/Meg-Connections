@@ -103,7 +103,7 @@ function GameControlButtonsPanel({
         >
           <span className="flex items-center">
             <Shuffle className="h-7 w-7 mr-2" strokeWidth={1} />
-            <span className="select-none text-lg font-semibold">Shuffle</span>
+            <span className="select-none text-base font-semibold">Shuffle</span>
           </span>
         </Button>
         <Button
@@ -115,7 +115,7 @@ function GameControlButtonsPanel({
         >
           <span className="flex items-center">
             <Undo className="h-7 w-7 mr-2" strokeWidth={1} />
-            <span className="select-none text-lg font-semibold">Deselect All</span>
+            <span className="select-none text-base font-semibold">Deselect All</span>
           </span>
         </Button>
         <Button
@@ -127,7 +127,7 @@ function GameControlButtonsPanel({
         >
           <span className="flex items-center">
             <SendHorizontal className="h-7 w-7 mr-2" strokeWidth={1} />
-            <span className="select-none text-lg font-semibold">Submit</span>
+            <span className="select-none text-base font-semibold">Submit</span>
           </span>
         </Button>
         <div /> {/* Spacer to keep buttons centered in 4 columns */}
