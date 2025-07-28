@@ -10,7 +10,8 @@ function Header({ activeGame }) {
   return (
     <header className="relative flex flex-col items-center">
       <div className="flex w-full items-center justify-center mt-12 mb-4 relative">
-        <h1 className="pt-serif-bold text-center w-full text-xl sm:text-4xl">
+        {/* On mobile, add padding-right to h1 to prevent overlap with info button */}
+        <h1 className="pt-serif-bold text-center w-full text-xl sm:text-4xl pr-16 sm:pr-0">
           {title}
         </h1>
         {/* Hide info button if on landing page (no activeGame) */}
