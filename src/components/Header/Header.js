@@ -9,23 +9,23 @@ function Header({ activeGame }) {
 
   return (
     <header className="relative flex flex-col items-center">
-      <div className="flex w-full items-center justify-center mt-12 mb-4 relative">
-        <h1 className="pt-serif-bold text-center w-full text-base xs:text-lg sm:text-2xl md:text-4xl transition-all">
+      <div className="flex w-full max-w-xl items-center justify-center mt-8 mb-3 relative px-2">
+        <h1 className="pt-serif-bold text-center w-full text-sm xs:text-base sm:text-xl md:text-3xl transition-all">
           {title}
         </h1>
         {/* Responsive info button, shrinks on small screens */}
         {activeGame && (
-          <div className="absolute right-2 top-1/2 -translate-y-1/2 sm:right-8">
-            <div className="w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center">
+          <div className="absolute right-1 top-1/2 -translate-y-1/2 sm:right-4">
+            <div className="w-7 h-7 sm:w-10 sm:h-10 flex items-center justify-center">
               {activeGame === "wordle" ? (
                 <WordleInfoModal
-                  buttonClassName="w-8 h-8 sm:w-12 sm:h-12"
-                  iconClassName="w-5 h-5 sm:w-7 sm:h-7"
+                  buttonClassName="w-7 h-7 sm:w-10 sm:h-10"
+                  iconClassName="w-4 h-4 sm:w-6 sm:h-6"
                 />
               ) : (
                 <InfoModal
-                  buttonClassName="w-8 h-8 sm:w-12 sm:h-12"
-                  iconClassName="w-5 h-5 sm:w-7 sm:h-7"
+                  buttonClassName="w-7 h-7 sm:w-10 sm:h-10"
+                  iconClassName="w-4 h-4 sm:w-6 sm:h-6"
                 />
               )}
             </div>
