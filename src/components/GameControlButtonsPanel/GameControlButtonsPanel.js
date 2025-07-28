@@ -115,7 +115,7 @@ function GameControlButtonsPanel({
         >
           <span className="flex items-center">
             <Undo className="h-7 w-7 mr-2" strokeWidth={1} />
-            <span className="select-none text-base font-semibold">Deselect All</span>
+            <span className="select-none text-xs font-semibold whitespace-nowrap">Deselect All</span>
           </span>
         </Button>
         <Button
