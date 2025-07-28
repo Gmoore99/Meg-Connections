@@ -120,7 +120,7 @@ function GameControlButtonsPanel({
         </Button>
         <Button
           size="base"
-          className="bg-gray-400 text-white hover:bg-amber-500 flex items-center justify-center h-16 sm:h-16"
+          className="bg-gray-400 text-white hover:bg-amber-500 flex items-center justify-center h-12 sm:h-16"
           variant="submit"
           onClick={submitCandidateGuess}
           disabled={isGameOver || guessCandidate.length !== categorySize}
