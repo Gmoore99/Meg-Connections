@@ -94,35 +94,41 @@ function GameControlButtonsPanel({
       <div className="grid grid-cols-3 gap-2 sm:gap-4 w-full max-w-2xl">
         <Button
           size="base"
-          className="bg-amber-300 text-white hover:bg-amber-500"
+          className="bg-amber-300 text-white hover:bg-amber-500 flex items-center justify-center h-12 sm:h-16"
           disabled={isGameOver}
           variant="secondary"
           onClick={() =>
             setShuffledRows(shuffleGameData({ gameData: shuffledRows }))
           }
         >
-          <Shuffle className="h-10 w-10 mr-3" strokeWidth={1} />
-          <p className="select-none">Shuffle</p>
+          <span className="flex items-center">
+            <Shuffle className="h-7 w-7 mr-2" strokeWidth={1} />
+            <span className="select-none text-lg font-semibold">Shuffle</span>
+          </span>
         </Button>
         <Button
           size="base"
-          className="bg-amber-300 text-white hover:bg-amber-500"
+          className="bg-amber-300 text-white hover:bg-amber-500 flex items-center justify-center h-12 sm:h-16"
           disabled={isGameOver}
           variant="secondary"
           onClick={deselectAll}
         >
-          <Undo className="h-10 w-10 mr-3" strokeWidth={1} />
-          <p className="select-none">Deselect All</p>
+          <span className="flex items-center">
+            <Undo className="h-7 w-7 mr-2" strokeWidth={1} />
+            <span className="select-none text-lg font-semibold">Deselect All</span>
+          </span>
         </Button>
         <Button
           size="base"
-          className="bg-gray-400 text-white hover:bg-amber-500"
+          className="bg-gray-400 text-white hover:bg-amber-500 flex items-center justify-center h-16 sm:h-16"
           variant="submit"
           onClick={submitCandidateGuess}
           disabled={isGameOver || guessCandidate.length !== categorySize}
         >
-          <SendHorizontal className="h-10 w-10 mr-3" strokeWidth={1} />
-          <p className="select-none">Submit</p>
+          <span className="flex items-center">
+            <SendHorizontal className="h-7 w-7 mr-2" strokeWidth={1} />
+            <span className="select-none text-lg font-semibold">Submit</span>
+          </span>
         </Button>
         <div /> {/* Spacer to keep buttons centered in 4 columns */}
       </div>
