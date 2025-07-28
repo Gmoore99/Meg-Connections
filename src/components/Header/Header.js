@@ -4,8 +4,8 @@ import WordleInfoModal from "../modals/WordleInfoModal";
 
 function Header({ activeGame }) {
   let title = "Meg's Birthday Games!!! 🥳❤️";
-  if (activeGame === "connections") title = "Meg's Birthday Connections!!! ❤️❤️";
-  if (activeGame === "wordle") title = "Meg's Birthday Wordle!! ❤️❤️";
+  if (activeGame === "connections") title = "Meg's Connections!!! ❤️❤️";
+  if (activeGame === "wordle") title = "Meg's Wordle!! ❤️❤️";
 
   return (
     <header className="relative flex flex-col items-center w-full">
