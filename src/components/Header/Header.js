@@ -13,7 +13,7 @@ function Header({ activeGame }) {
         {title}
       </h1>
       <div className="w-full border-b-2 border-gray-300 mb-4"></div>
-      <div className="absolute top-6 right-6 m-4">
+      <div className="absolute top-6 right-0 m-4">
         {activeGame === "wordle" ? <WordleInfoModal /> : <InfoModal />}
       </div>
     </header>
