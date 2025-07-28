@@ -18,7 +18,7 @@ export default function LandingPage({ onStartConnections, onStartWordle }) {
               style={{ display: "block", borderRadius: "1rem" }}
             />
             <span
-              className="font-pt-serif text-3xl font-bold text-black flex flex-col leading-tight"
+              className="font-pt-serif text-3xl font-bold text-black flex flex-col leading-tight items-start text-left"
               style={{
                 letterSpacing: "1px",
               }}
@@ -42,7 +42,7 @@ export default function LandingPage({ onStartConnections, onStartWordle }) {
               style={{ display: "block", borderRadius: "1rem" }}
             />
             <span
-              className="font-pt-serif text-3xl font-bold text-black flex flex-col leading-tight"
+              className="font-pt-serif text-3xl font-bold text-black flex flex-col leading-tight items-start text-left"
               style={{
                 letterSpacing: "1px",
               }}
