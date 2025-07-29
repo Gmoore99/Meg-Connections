@@ -28,7 +28,7 @@ function Header({ activeGame }) {
         </div>
       )}
       <div className="w-full max-w-xl mt-8 mb-3 px-2 flex items-center justify-center">
-        <h1 className="pt-serif-bold text-center w-full text-xl sm:text-2xl md:text-3xl transition-all">
+        <h1 className="pt-serif-bold text-center w-full text-2xl sm:text-3xl md:text-4xl transition-all">
           {title}
         </h1>
       </div>
