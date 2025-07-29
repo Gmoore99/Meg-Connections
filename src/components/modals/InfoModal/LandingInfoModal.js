@@ -1,67 +1,67 @@
 import React from "react";
-import { HelpCircle } from "lucide-react";
-import BaseModal from "../modals/BaseModal";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { MAX_MISTAKES } from "../../../lib/constants";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../ui/accordion";
+} from "../../ui/accordion";
+import BaseModal from "../BaseModal";
+import { PuzzleDataContext } from "../../../providers/PuzzleDataProvider";
 
-function WordleInfoModal() {
+function LandingInfoModal({ initiallyOpen = false, onClose }) {
+  const { resetAllGames } = React.useContext(PuzzleDataContext);
+
   return (
     <BaseModal
       title=""
-      trigger={
-        <button className="bg-purple-200 text-black w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full">
-          <HelpCircle className="w-6 h-6 sm:w-7 sm:h-7" />
-        </button>
-      }
-      initiallyOpen={false}
+      initiallyOpen={initiallyOpen}
+      onClose={onClose}
+      showActionButton={true}
       actionButtonText="Got It!"
       actionButtonClassName="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-400"
       footerElements={
         <button
-          className="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-400"
-          onClick={() => (window.location.href = "/")}
+          className="px-4 py-2 bg-purple-600 text-white rounded font-bold hover:bg-purple-800"
+          onClick={() => {
+            resetAllGames();
+            if (onClose) onClose();
+          }}
         >
-          Home
+          Restart Game
         </button>
       }
     >
       <Tabs defaultValue="how-to-play">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="how-to-play">How To Play</TabsTrigger>
-          <TabsTrigger value="about-meg">About Meg</TabsTrigger>
+          <TabsTrigger value="About-Meg">About Meg</TabsTrigger>
         </TabsList>
         <TabsContent value="how-to-play">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger>What's The Goal?</AccordionTrigger>
               <AccordionContent>
-                Guess the secret Meg-themed five letter word in six tries or less!
+                Find groups of items or names that share something in common.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger>How Do I Play?</AccordionTrigger>
               <AccordionContent>
-                Enter a valid five letter word and press Enter. The color of the tiles will change to show how close your guess was to the word.
+                Select the items and tap 'Submit' to check if your guess matches
+                one of the answer categories.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
-              <AccordionTrigger>What do the colors mean?</AccordionTrigger>
+              <AccordionTrigger>How Many Tries Do I Get?</AccordionTrigger>
               <AccordionContent>
-                <ul className="list-disc ml-4">
-                  <li><span className="font-bold text-green-600">Green</span>: Correct letter in the correct spot.</li>
-                  <li><span className="font-bold text-yellow-500">Yellow</span>: Correct letter in the wrong spot.</li>
-                  <li><span className="font-bold text-gray-600">Gray</span>: Letter is not in the word.</li>
-                </ul>
+                {`You can make ${MAX_MISTAKES} mistakes before the game ends.`}
               </AccordionContent>
             </AccordionItem>
           </Accordion>
         </TabsContent>
-        <TabsContent value="about-meg">
+        <TabsContent value="About-Meg">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger>Who is She?</AccordionTrigger>
@@ -73,16 +73,15 @@ function WordleInfoModal() {
                   className="underline font-bold"
                   rel="noopener noreferrer"
                 >
-                  andcomputers.io
                 </a>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger>Why did I put this together?</AccordionTrigger>
+              <AccordionTrigger>Why Did I Put This Together?</AccordionTrigger>
               <AccordionContent>
                 <div className="mb-1">
-                  <div>1. In the hope I can finally beat Meg in a NYT game</div>
-                  <div>2. I'm a simp</div>
+                  <div>a. In the hope I can finally beat Meg in one of the NYT games.</div>
+                  <div>b. I'm a simp</div>
                 </div>
               </AccordionContent>
             </AccordionItem>
@@ -99,8 +98,9 @@ function WordleInfoModal() {
           </Accordion>
         </TabsContent>
       </Tabs>
+      {localStorage.setItem("wordleWordIndex", "0")}
     </BaseModal>
   );
 }
 
-export default WordleInfoModal;
+export default LandingInfoModal;

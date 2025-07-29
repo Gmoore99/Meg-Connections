@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Confetti from "react-confetti";
-import JSConfetti from "js-confetti"; // <-- Add this import
-// import { useNavigate } from "react-router-dom"; // <-- Add this import
+import JSConfetti from "js-confetti";
 import "./wordle-flip.css";
 import WordleGamesWonModal from "./WordleGamesWonModal";
 import WordleNewGameButton from "./WordleNewGameButton";
@@ -33,7 +32,7 @@ function WordleAllDoneModal({ open }) {
           className="mt-8 px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-800"
           onClick={() => window.location.href = "/"}
         >
-          Home Page
+          Home
         </button>
       </div>
     </div>
@@ -41,9 +40,6 @@ function WordleAllDoneModal({ open }) {
 }
 
 export default function Wordle() {
-  // const navigate = useNavigate(); // <-- Add this line
-
-  // Track which word we're on
   const [wordIndex, setWordIndex] = useState(() => {
     const saved = localStorage.getItem("wordleWordIndex");
     return saved ? parseInt(saved, 10) : 0;
@@ -51,28 +47,51 @@ export default function Wordle() {
   const [guesses, setGuesses] = useState([]);
   const [currentGuess, setCurrentGuess] = useState("");
   const [status, setStatus] = useState("playing");
-  const [showAllDone, setShowAllDone] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false);
+
+  // If all words are used, show the "all done" modal
+  const allDone = wordIndex >= WORD_LIST.length;
+
+  // Reset local state when wordIndex changes
+  useEffect(() => {
+    setGuesses([]);
+    setCurrentGuess("");
+    setStatus("playing");
+    setShowConfetti(false);
+    setIsEndGameModalOpen(false);
+  }, [wordIndex]);
+
+  // Save word index to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("wordleWordIndex", wordIndex);
+  }, [wordIndex]);
+
+  // Handle End Game Modal
+  useEffect(() => {
+    if (!status || status === "playing") return;
+    const modalDelay = status === "won" ? 1200 : 250;
+    const delayModalOpen = window.setTimeout(() => {
+      setIsEndGameModalOpen(true);
+      setShowConfetti(false);
+    }, modalDelay);
+
+    if (status === "won") setShowConfetti(true);
+
+    return () => window.clearTimeout(delayModalOpen);
+  }, [status]);
+
+  // Set answer for the current word
+  const answer = allDone ? "" : WORD_LIST[wordIndex];
 
   // Add a ref to store jsConfetti instance
-  const jsConfettiRef = React.useRef(null);
+  const jsConfettiRef = useRef(null);
 
   useEffect(() => {
     if (!jsConfettiRef.current) {
       jsConfettiRef.current = new JSConfetti();
     }
   }, []);
-
-  // If all words are used, show the "all done" modal
-  const allDone = wordIndex >= WORD_LIST.length;
-
-  // Set answer for the current word
-  const answer = allDone ? "" : WORD_LIST[wordIndex];
-
-  // Save word index to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem("wordleWordIndex", wordIndex);
-  }, [wordIndex]);
 
   // Keyboard input
   useEffect(() => {
@@ -151,19 +170,18 @@ export default function Wordle() {
   };
 
   // Start a new game with the next word
-  const startNewGame = () => {
+  function handlePlayAgain() {
     if (wordIndex + 1 >= WORD_LIST.length) {
-      setShowAllDone(true); // Show the all done modal if all words are used
+      // All words used, increment wordIndex so allDone becomes true
+      setWordIndex((idx) => idx + 1);
+      setIsEndGameModalOpen(false);
       return;
     }
-    setGuesses([]);
-    setCurrentGuess("");
-    setStatus("playing");
     setWordIndex((idx) => idx + 1);
-  };
+  }
 
-  // Only show the WordleAllDoneModal when all words are completed and user clicks "New Game"
-  if (showAllDone) {
+  // Show "all done" modal if all words are completed
+  if (allDone) {
     return <WordleAllDoneModal open={true} />;
   }
 
@@ -239,18 +257,18 @@ export default function Wordle() {
         </div>
       )}
       <WordleGamesWonModal
-        open={status === "won"}
-        onClose={() => setStatus("playing")}
+        open={status === "won" && isEndGameModalOpen}
+        onClose={() => setIsEndGameModalOpen(false)}
         guesses={guesses}
         answer={answer}
-        onNewGame={startNewGame}
+        onNewGame={handlePlayAgain}
       />
       <WordleGameLostModal
-        open={status === "lost"}
-        onClose={() => setStatus("playing")}
+        open={status === "lost" && isEndGameModalOpen}
+        onClose={() => setIsEndGameModalOpen(false)}
         guesses={guesses}
         answer={answer}
-        onNewGame={startNewGame} // This already uses the correct logic
+        onNewGame={handlePlayAgain}
       />
     </div>
   );

@@ -22,7 +22,7 @@ export const ALL_CATEGORIES = [
   },
   {
     category: "Words that Contain m-e-g",
-    words: ["Emergency", "Homegirl", "Game", "Segment"],
+    words: ["Emergency", "Manage", "Game", "Image"],
     difficulty: 4,
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
@@ -100,7 +100,7 @@ export const ALL_CATEGORIES = [
   },
   {
     category: "Things The Scare Meg",
-    words: ["Technology", "Driving", "Snakes", "Evil Incompetance"],
+    words: ["Technology", "Driving", "Snakes", "Evil Competance"],
     difficulty: 1,
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
@@ -127,12 +127,18 @@ export const ALL_CATEGORIES = [
 // --- Category Sets (always grouped together) ---
 export const CATEGORY_SETS = [
   [
+    ALL_CATEGORIES.find(cat => cat.category === "Meg's Favourite Snacks"),
+    ALL_CATEGORIES.find(cat => cat.category === "Famous Megs"),
+    ALL_CATEGORIES.find(cat => cat.category === "Things Meg Might Text You"),
+    ALL_CATEGORIES.find(cat => cat.category === "Little Miss Characters Meg Identifies With"),
+  ],
+  [
     ALL_CATEGORIES.find(cat => cat.category === "When people might tell Meg to slow down"),
     ALL_CATEGORIES.find(cat => cat.category === "Meg's Halloween Costumes"),
     ALL_CATEGORIES.find(cat => cat.category === "Canoe Camp Core"),
     ALL_CATEGORIES.find(cat => cat.category === "Words that Contain m-e-g"),
   ],
-   [
+  [
     ALL_CATEGORIES.find(cat => cat.category === "Ingredients in Meg's Pesto Pasta"),
     ALL_CATEGORIES.find(cat => cat.category === "Hammersmith FC Accolades"),
     ALL_CATEGORIES.find(cat => cat.category === "Meg's Love Languages"),
@@ -143,12 +149,6 @@ export const CATEGORY_SETS = [
     ALL_CATEGORIES.find(cat => cat.category === "Things Typically Found in Megs Bag"),
     ALL_CATEGORIES.find(cat => cat.category === "Meg's Dislikes"),
     ALL_CATEGORIES.find(cat => cat.category === "Words Used in Meg's Spotify Day List"),
-  ],
-  [
-    ALL_CATEGORIES.find(cat => cat.category === "Meg's Favourite Snacks"),
-    ALL_CATEGORIES.find(cat => cat.category === "Famous Megs"),
-    ALL_CATEGORIES.find(cat => cat.category === "Things Meg Might Text You"),
-    ALL_CATEGORIES.find(cat => cat.category === "Little Miss Characters Meg Identifies With"),
   ],
   [
     ALL_CATEGORIES.find(cat => cat.category === "Things The Scare Meg"),

@@ -1,6 +1,10 @@
 import React from "react";
+import LandingInfoModal from "../modals/InfoModal/LandingInfoModal";
+import { HelpCircle } from "lucide-react";
 
 export default function LandingPage({ onStartConnections, onStartWordle }) {
+  const [showInfo, setShowInfo] = React.useState(false);
+
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-black-100 pt-32">
       <div className="flex flex-col gap-8">
@@ -52,6 +56,23 @@ export default function LandingPage({ onStartConnections, onStartWordle }) {
             </span>
           </button>
         </div>
+        {/* Info Button below Wordle button, styled to match header */}
+        <div className="flex justify-center mt-4">
+          <button
+            className="bg-purple-200 text-black w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full"
+            aria-label="Info"
+            title="Info"
+            onClick={() => setShowInfo(true)}
+          >
+            <HelpCircle className="w-6 h-6 sm:w-7 sm:h-7" />
+          </button>
+        </div>
+        {showInfo && (
+          <LandingInfoModal
+            initiallyOpen={true}
+            onClose={() => setShowInfo(false)}
+          />
+        )}
       </div>
     </div>
   );
