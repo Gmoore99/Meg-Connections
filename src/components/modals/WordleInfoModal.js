@@ -78,7 +78,7 @@ function WordleInfoModal() {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger>Why did I put this together?</AccordionTrigger>
+              <AccordionTrigger>Why Did I Put This Together?</AccordionTrigger>
               <AccordionContent>
                 <div className="mb-1">
                   <div>1. In the hope I can finally beat Meg in a NYT game</div>

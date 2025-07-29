@@ -76,7 +76,7 @@ function InfoModal() {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger>Why did I put this together?</AccordionTrigger>
+              <AccordionTrigger>Why Did I Put This Together?</AccordionTrigger>
               <AccordionContent>
                 <div className="mb-1">
                   <div>a. In the hope I can finally beat Meg in one of the NYT games.</div>
