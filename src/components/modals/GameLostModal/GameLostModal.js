@@ -23,7 +23,15 @@ function GameLostModal({ open, onClose, onPlayAgain }) {
       initiallyOpen={open}
       footerElements={
         noMoreSets
-          ? []
+          ? [
+              <Button
+                key="home"
+                onClick={() => (window.location.href = "/")}
+                className="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-800"
+              >
+                Home
+              </Button>,
+            ]
           : [
               <ShareScoreButton key="share" />,
               <Button key="New-game" onClick={handlePlayAgain}>
@@ -35,7 +43,7 @@ function GameLostModal({ open, onClose, onPlayAgain }) {
     >
       {noMoreSets ? (
         <div style={{ textAlign: "center", fontSize: "1.5rem" }}>
-          Happy 30th Birthday Meg ❤️❤️
+          Happy Birthday Meg ❤️❤️
           <br />
           <div style={{ display: "flex", justifyContent: "center" }}>
             <img

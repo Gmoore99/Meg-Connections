@@ -23,7 +23,15 @@ function GameWonModal({ open, onClose, submittedGuesses, onPlayAgain }) {
       initiallyOpen={open}
       footerElements={
         noMoreSets
-          ? []
+          ? [
+              <Button
+                key="home"
+                onClick={() => (window.location.href = "/")}
+                className="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-800"
+              >
+                Home
+              </Button>,
+            ]
           : [
               <ShareScoreButton
                 key="share"

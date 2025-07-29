@@ -17,7 +17,7 @@ export const ALL_CATEGORIES = [
   {
     category: "Canoe Camp Core",
     words: ["50 Days", "Ghouling", "Loon", "Trench Foot"],
-    difficulty: 3,
+    difficulty: 2,
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
   {

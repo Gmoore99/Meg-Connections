@@ -57,12 +57,12 @@ export function SolvedWordRow({ ...props }) {
         <Popover>
           <PopoverTrigger asChild>
             <div
-              className="cursor-pointer hover:animate-pulse shadow-md"
+              className="cursor-pointer shadow-md"
               style={{ backgroundColor: color, borderRadius: 8 }}
               onClick={() => setHasBeenClicked(true)}
             >
               {!hasBeenClicked && (
-                <Badge className="animate-pulse absolute top-0 right-0 mr-2 mt-2">
+                <Badge className="pulse-strong animate-pulse absolute top-0 right-0 mr-2 mt-2">
                   View More
                 </Badge>
               )}

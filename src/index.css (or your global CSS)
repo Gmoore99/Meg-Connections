@@ -1,0 +1,13 @@
+@layer utilities {
+  .pulse-strong {
+    animation: pulse-strong 2s cubic-bezier(0.2, 0, 0.6, 1) infinite;
+  }
+  @keyframes pulse-strong {
+    0%, 100% {
+      opacity: 1;
+    }
+    0% {
+      opacity: 0.0; /* Higher opacity than Tailwind's default 0.5 */
+    }
+  }
+}
