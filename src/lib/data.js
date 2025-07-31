@@ -40,7 +40,7 @@ export const ALL_CATEGORIES = [
   },
   {
     category: "Meg's Halloween Costumes",
-    words: ["Avril Levine", "Lion", "Bunny", "Hells Angel"],
+    words: ["Avril Levine", "Lion", "Bunny", "KISS"],
     difficulty: 3,
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
@@ -72,7 +72,7 @@ export const ALL_CATEGORIES = [
     category: "Little Miss Characters Meg Identifies With",
     words: ["Sunshine", "Princess", "Helpful", "Brainy"],
     difficulty: 4,
-    imageSrc: "https://i.ibb.co/pP1xn0Z/Connections.png",
+    imageSrc: "https://i.postimg.cc/vBBXgSKs/Screenshot-2025-07-31-at-21-00-51.png",
   },
   {
     category: "Ingredients in Meg's Pesto Pasta",
@@ -94,7 +94,7 @@ export const ALL_CATEGORIES = [
   },
   {
     category: "Types of Gravy",
-    words: ["Young", "Instant", "Baby", "Chicken"],
+    words: ["Young", "Instant", "Baby", "Mushroom"],
     difficulty: 4,
     imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
