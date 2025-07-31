@@ -25,7 +25,7 @@ function InfoModal() {
       actionButtonClassName="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-400"
       footerElements={
         <button
-          className="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-400"
+          className="px-4 py-2 bg-fuchsia-400 text-white rounded font-bold hover:bg-fuchsia-700"
           onClick={() => (window.location.href = "/")}
         >
           Home
@@ -65,32 +65,19 @@ function InfoModal() {
             <AccordionItem value="item-1">
               <AccordionTrigger>Who is She?</AccordionTrigger>
               <AccordionContent>
-                My super hot gf{" "}
-                <a
-                  href="https://andcomputers.io/"
-                  target="_blank"
-                  className="underline font-bold"
-                >
-                
-                </a>
+                <div>
+                  <div>1. My super wonderful, smart and beautiful gf</div>
+                  <div>2. An insurrerably good NYT game player and enthusiast</div>
+                  <div>3. The birthday girl!</div>
+                </div>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger>Why Did I Put This Together?</AccordionTrigger>
               <AccordionContent>
                 <div className="mb-1">
-                  <div>a. In the hope I can finally beat Meg in one of the NYT games.</div>
-                  <div>b. I'm a simp</div>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger>
-                Another Prompt?
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="grid grid-flow-row">
-                  <p>TBC </p>
+                  <div>1. I'm a Simp </div>
+                  <div>2. In the hope I can finally beat Meg in one of the NYT games (even if I created it)</div>
                 </div>
               </AccordionContent>
             </AccordionItem>

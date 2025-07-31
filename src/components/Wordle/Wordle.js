@@ -8,7 +8,7 @@ import WordleShareButton from "./WordleShareButton";
 import WordleGameLostModal from "./WordleGameLostModal";
 
 // List of words to use, each only once
-const WORD_LIST = ["CANOE", "CLEAT", "PESTO", "ANGEL", "YOUNG", "SORRY"];
+const WORD_LIST = ["CANOE", "CLEAT", "PESTO", "ANGEL", "YOUNG", "SORRY", "MAPLE"];
 
 const KEYBOARD_ROWS = [
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
@@ -269,6 +269,12 @@ export default function Wordle() {
         guesses={guesses}
         answer={answer}
         onNewGame={handlePlayAgain}
+      />
+      {/* Small PNG at bottom center for all screen sizes */}
+      <img
+        src="https://i.postimg.cc/02nDpNdY/Screenshot-2025-07-28-at-15-12-28.png"
+        alt="Bottom Center Icon"
+        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-7 h-7 sm:w-9 sm:h-9 z-58 pointer-events-none"
       />
     </div>
   );

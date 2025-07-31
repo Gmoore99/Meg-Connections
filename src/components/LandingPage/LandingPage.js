@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import InfoButton from "../InfoButton";
 import LandingInfoModal from "../modals/InfoModal/LandingInfoModal";
 import { HelpCircle } from "lucide-react";
 
 export default function LandingPage({ onStartConnections, onStartWordle }) {
   const [showInfo, setShowInfo] = React.useState(false);
+  const [animateIcon, setAnimateIcon] = useState(false);
+
+  // Animation classes
+  const animationClasses = animateIcon
+    ? "animate-spin"
+    : "";
 
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen bg-black-100 pt-12">
+    <div className="flex flex-col items-center justify-start min-h-screen bg-black-100 pt-12 relative">
       <div className="flex flex-col gap-8">
         {/* Info Button above Connections */}
         <div className="flex justify-center mb-2">
@@ -75,6 +81,13 @@ export default function LandingPage({ onStartConnections, onStartWordle }) {
           </button>
         </div>
       </div>
+      {/* Small PNG at bottom center for all screen sizes */}
+      <img
+        src="https://i.postimg.cc/02nDpNdY/Screenshot-2025-07-28-at-15-12-28.png"
+        alt="Bottom Center Icon"
+        className="fixed bottom-20 left-1/2 transform -translate-x-1/2 w-7 h-7 sm:w-9 sm:h-9 z-50 cursor-pointer"
+        style={{ pointerEvents: "auto" }}
+      />
     </div>
   );
 }

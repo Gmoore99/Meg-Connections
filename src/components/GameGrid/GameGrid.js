@@ -50,8 +50,8 @@ export function SolvedWordRow({ ...props }) {
     <animated.div style={springProps}>
       {!isImageAvailable ? (
         <div style={{ backgroundColor: color, borderRadius: 8 }}>
-          <p className="font-bold pt-2 pl-4 text-gray-900">{props.category}</p>
-          <p className="font-thin pb-2 pl-4 text-gray-900">{props.words.join(", ")}</p>
+          <p className="font-bold font-pt-serif pt-2 pl-4 text-gray-900">{props.category}</p>
+          <p className="font-thin font-pt-serif pb-2 pl-4 text-gray-900">{props.words.join(", ")}</p>
         </div>
       ) : (
         <Popover>
@@ -124,9 +124,19 @@ function GameGrid({ gameRows, shouldGridShake, setShouldGridShake }) {
               )
           )
           .map((word) => (
-            <WordButton key={word} word={word} fullCandidateSize={gameRows.flat().length} />
+            <WordButton
+              key={word}
+              word={word}
+              fullCandidateSize={gameRows.flat().length}
+              className="font-bold font-pt-serif"
+            />
           ))}
       </div>
+      <img
+        src="https://i.postimg.cc/02nDpNdY/Screenshot-2025-07-28-at-15-12-28.png"
+        alt="Bottom Center Icon"
+        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-7 h-7 sm:w-9 sm:h-9 z-50 pointer-events-none"
+      />
     </div>
   );
 }
