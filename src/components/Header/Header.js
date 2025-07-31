@@ -2,8 +2,8 @@ import React from "react";
 
 function Header({ activeGame }) {
   let title = "Meg's Birthday Games!!! 🥳❤️";
-  if (activeGame === "connections") title = "Meg's Connections!!! ❤️❤️";
-  if (activeGame === "wordle") title = "Meg's Wordle!! ❤️❤️";
+  if (activeGame === "connections") title = "Meg's Connections!!!";
+  if (activeGame === "wordle") title = "Meg's Wordle!!";
 
   // Only show info button for connections and wordle, not landing
   const showInfoButton = activeGame === "connections" || activeGame === "wordle";
