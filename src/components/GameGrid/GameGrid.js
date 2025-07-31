@@ -132,11 +132,12 @@ function GameGrid({ gameRows, shouldGridShake, setShouldGridShake }) {
             />
           ))}
       </div>
-      <img
+      {/* Remove PNG at bottom center */}
+      {/* <img
         src="https://i.postimg.cc/02nDpNdY/Screenshot-2025-07-28-at-15-12-28.png"
         alt="Bottom Center Icon"
         className="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-7 h-7 sm:w-9 sm:h-9 z-50 pointer-events-none"
-      />
+      /> */}
     </div>
   );
 }

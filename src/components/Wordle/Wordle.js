@@ -6,6 +6,7 @@ import WordleGamesWonModal from "./WordleGamesWonModal";
 import WordleNewGameButton from "./WordleNewGameButton";
 import WordleShareButton from "./WordleShareButton";
 import WordleGameLostModal from "./WordleGameLostModal";
+import InfoModal from "../modals/InfoModal/InfoModal"; // <-- Import your InfoModal
 
 // List of words to use, each only once
 const WORD_LIST = ["CANOE", "CLEAT", "PESTO", "ANGEL", "YOUNG", "SORRY", "MAPLE"];
@@ -49,6 +50,7 @@ export default function Wordle() {
   const [status, setStatus] = useState("playing");
   const [showConfetti, setShowConfetti] = useState(false);
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   // If all words are used, show the "all done" modal
   const allDone = wordIndex >= WORD_LIST.length;
@@ -180,6 +182,13 @@ export default function Wordle() {
     setWordIndex((idx) => idx + 1);
   }
 
+  // Listen for info button event from header
+  useEffect(() => {
+    const handler = () => setShowInfo(true);
+    document.addEventListener("openWordleInfoModal", handler);
+    return () => document.removeEventListener("openWordleInfoModal", handler);
+  }, []);
+
   // Show "all done" modal if all words are completed
   if (allDone) {
     return <WordleAllDoneModal open={true} />;
@@ -187,6 +196,12 @@ export default function Wordle() {
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-black-100 pt-8 px-2">
+      {showInfo && (
+        <InfoModal
+          initiallyOpen={true}
+          onClose={() => setShowInfo(false)}
+        />
+      )}
       {showConfetti && <Confetti width={window.innerWidth} height={window.innerHeight} />}
       <h2 className="text-xl sm:text-4xl font-bold mb-2 text-white text-center">Meg's NYT Birthday Wordle</h2>
       <div className="flex flex-col gap-2 mb-6 w-full max-w-[380px] sm:max-w-md mx-auto">
@@ -271,11 +286,11 @@ export default function Wordle() {
         onNewGame={handlePlayAgain}
       />
       {/* Small PNG at bottom center for all screen sizes */}
-      <img
+      {/* <img
         src="https://i.postimg.cc/02nDpNdY/Screenshot-2025-07-28-at-15-12-28.png"
         alt="Bottom Center Icon"
         className="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-7 h-7 sm:w-9 sm:h-9 z-58 pointer-events-none"
-      />
+      /> */}
     </div>
   );
 }

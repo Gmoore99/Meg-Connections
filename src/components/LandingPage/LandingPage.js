@@ -1,29 +1,27 @@
 import React, { useState } from "react";
 import InfoButton from "../InfoButton";
 import LandingInfoModal from "../modals/InfoModal/LandingInfoModal";
-import { HelpCircle } from "lucide-react";
 
 export default function LandingPage({ onStartConnections, onStartWordle }) {
-  const [showInfo, setShowInfo] = React.useState(false);
-  const [animateIcon, setAnimateIcon] = useState(false);
-
-  // Animation classes
-  const animationClasses = animateIcon
-    ? "animate-spin"
-    : "";
+  const [showInfo, setShowInfo] = useState(false);
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-black-100 pt-12 relative">
       <div className="flex flex-col gap-8">
-        {/* Info Button above Connections */}
+        {/* Info Button above Connections - PNG version */}
         <div className="flex justify-center mb-2">
           <button
-            className="bg-purple-200 text-black w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full"
+            className="bg-purple-200 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full"
             aria-label="Info"
             title="Info"
             onClick={() => setShowInfo(true)}
+            style={{ padding: 0, border: "none", background: "transparent" }}
           >
-            <HelpCircle className="w-6 h-6 sm:w-7 sm:h-7" />
+            <img
+              src="https://i.postimg.cc/02nDpNdY/Screenshot-2025-07-28-at-15-12-28.png"
+              alt="Info"
+              className="w-6 h-6 sm:w-7 sm:h-7"
+            />
           </button>
         </div>
         {showInfo && (
@@ -81,13 +79,6 @@ export default function LandingPage({ onStartConnections, onStartWordle }) {
           </button>
         </div>
       </div>
-      {/* Small PNG at bottom center for all screen sizes */}
-      <img
-        src="https://i.postimg.cc/02nDpNdY/Screenshot-2025-07-28-at-15-12-28.png"
-        alt="Bottom Center Icon"
-        className="fixed bottom-20 left-1/2 transform -translate-x-1/2 w-7 h-7 sm:w-9 sm:h-9 z-50 cursor-pointer"
-        style={{ pointerEvents: "auto" }}
-      />
     </div>
   );
 }

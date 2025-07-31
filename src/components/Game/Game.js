@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { shuffleGameData } from "../../lib/game-helpers";
 import GameGrid from "../GameGrid";
 import NumberOfMistakesDisplay from "../NumberOfMistakesDisplay";
@@ -11,6 +11,7 @@ import { GameStatusContext } from "../../providers/GameStatusProvider";
 import GameControlButtonsPanel from "../GameControlButtonsPanel";
 import ViewResultsModal from "../modals/ViewResultsModal";
 import { getNextGame } from "../../lib/data";
+import InfoModal from "../modals/InfoModal/InfoModal";
 
 function Game() {
   const {
@@ -29,6 +30,7 @@ function Game() {
   const [isEndGameModalOpen, setIsEndGameModalOpen] = React.useState(false);
   const [gridShake, setGridShake] = React.useState(false);
   const [showConfetti, setShowConfetti] = React.useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   // Reset all local state when gameData changes
   React.useEffect(() => {
@@ -84,6 +86,12 @@ function Game() {
     );
   }
 
+  useEffect(() => {
+    const handler = () => setShowInfo(true);
+    document.addEventListener("openInfoModal", handler);
+    return () => document.removeEventListener("openInfoModal", handler);
+  }, []);
+
   return (
     <>
       <h3 className="text-lg text-center mt-16">
@@ -132,6 +140,12 @@ function Game() {
           </>
         ) : (
           <ViewResultsModal onPlayAgain={handlePlayAgain} />
+        )}
+        {showInfo && (
+          <InfoModal
+            initiallyOpen={true}
+            onClose={() => setShowInfo(false)}
+          />
         )}
       </div>
     </>
