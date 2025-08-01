@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Header({ activeGame }) {
   let title = "Meg's Birthday Games!!! 🥳❤️";
@@ -7,6 +7,7 @@ function Header({ activeGame }) {
 
   // Only show info button for connections and wordle, not landing
   const showInfoButton = activeGame === "connections" || activeGame === "wordle";
+  const [showInfo, setShowInfo] = useState(false);
 
   return (
     <header className="relative flex flex-col items-center w-full">
@@ -14,7 +15,6 @@ function Header({ activeGame }) {
         <div className="absolute top-6 right-4 z-10">
           <button
             type="button"
-            title="Info"
             className="bg-transparent border-none p-0 cursor-pointer flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10"
             onClick={() => {
               if (activeGame === "wordle") {

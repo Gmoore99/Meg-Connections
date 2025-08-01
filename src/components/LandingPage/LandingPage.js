@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import InfoButton from "../InfoButton";
 import LandingInfoModal from "../modals/InfoModal/LandingInfoModal";
 
 export default function LandingPage({ onStartConnections, onStartWordle }) {
@@ -11,25 +10,23 @@ export default function LandingPage({ onStartConnections, onStartWordle }) {
         {/* Info Button above Connections - PNG version */}
         <div className="flex justify-center mb-2">
           <button
-            className="bg-purple-200 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full"
+            className="bg-purple-200 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-full"
             aria-label="Info"
-            title="Info"
             onClick={() => setShowInfo(true)}
             style={{ padding: 0, border: "none", background: "transparent" }}
           >
             <img
               src="https://i.postimg.cc/02nDpNdY/Screenshot-2025-07-28-at-15-12-28.png"
-              alt="Info"
-              className="w-6 h-6 sm:w-7 sm:h-7"
+              alt=""
+              className="w-14 h-14 sm:w-16 sm:h-16"
             />
           </button>
         </div>
-        {showInfo && (
-          <LandingInfoModal
-            initiallyOpen={true}
-            onClose={() => setShowInfo(false)}
-          />
-        )}
+        {/* Info Modal (single instance, controlled by showInfo) */}
+        <LandingInfoModal
+          open={showInfo}
+          onClose={() => setShowInfo(false)}
+        />
         {/* Connections Button with label */}
         <div className="flex flex-row items-center gap-8">
           <button

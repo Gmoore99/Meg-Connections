@@ -86,11 +86,23 @@ function Game() {
     );
   }
 
+  // Always allow info modal to open by resetting showInfo on close
   useEffect(() => {
     const handler = () => setShowInfo(true);
     document.addEventListener("openInfoModal", handler);
     return () => document.removeEventListener("openInfoModal", handler);
   }, []);
+
+  // When user submits a guess:
+  const handleSubmitGuess = (guess) => {
+    // ...your guess logic...
+    // Example: Replace with your actual condition
+    const isIncorrect = isGuessIncorrect(guess);
+    if (isIncorrect) {
+      setShouldGridShake(true);
+    }
+    // ...rest of your logic...
+  };
 
   return (
     <>
@@ -143,7 +155,7 @@ function Game() {
         )}
         {showInfo && (
           <InfoModal
-            initiallyOpen={true}
+            open={showInfo}
             onClose={() => setShowInfo(false)}
           />
         )}

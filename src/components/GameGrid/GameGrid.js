@@ -104,7 +104,9 @@ function GameGrid({ gameRows, shouldGridShake, setShouldGridShake }) {
     isGameActive && solvedGameData.length > 0;
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-2 sm:px-4">
+    <div
+      className={`w-full max-w-3xl mx-auto px-2 sm:px-4 ${shouldGridShake ? "animate-shake" : ""}`}
+    >
       {/* Solved answers section */}
       {solvedGameData.length > 0 && (
         <div className="grid gap-y-2 pb-2">

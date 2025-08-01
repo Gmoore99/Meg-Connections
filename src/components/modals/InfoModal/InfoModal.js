@@ -9,12 +9,14 @@ import {
 } from "../../ui/accordion";
 import BaseModal from "../BaseModal";
 
-function InfoModal(props) {
+function InfoModal({ open, onClose }) {
+  if (!open) return null;
+
   return (
     <BaseModal
       title=""
-      initiallyOpen={props.initiallyOpen}
-      onClose={props.onClose}
+      open={open}
+      onClose={onClose}
       showActionButton={true}
       actionButtonText="Got It!"
       actionButtonClassName="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-400"
@@ -37,20 +39,26 @@ function InfoModal(props) {
             <AccordionItem value="item-1">
               <AccordionTrigger>What's The Goal?</AccordionTrigger>
               <AccordionContent>
-                Find groups of items or names that share something in common.
+                <div className="text-left">
+                  Find groups of items or names that share something in common.
+                </div>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger>How Do I Play?</AccordionTrigger>
               <AccordionContent>
-                Select the items and tap 'Submit' to check if your guess matches
-                one of the answer categories.
+                <div className="text-left">
+                  Select the items and tap 'Submit' to check if your guess matches
+                  one of the answer categories.
+                </div>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
               <AccordionTrigger>How Many Tries Do I Get?</AccordionTrigger>
               <AccordionContent>
-                {`You can make ${MAX_MISTAKES} mistakes before the game ends.`}
+                <div className="text-left">
+                  {`You can make ${MAX_MISTAKES} mistakes before the game ends.`}
+                </div>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -60,7 +68,7 @@ function InfoModal(props) {
             <AccordionItem value="item-1">
               <AccordionTrigger>Who is She?</AccordionTrigger>
               <AccordionContent>
-                <div>
+                <div className="text-left">
                   <div>1. My super wonderful, smart and beautiful gf</div>
                   <div>2. An insurrerably good NYT game player and enthusiast</div>
                   <div>3. The birthday girl!</div>
@@ -70,7 +78,7 @@ function InfoModal(props) {
             <AccordionItem value="item-2">
               <AccordionTrigger>Why Did I Put This Together?</AccordionTrigger>
               <AccordionContent>
-                <div className="mb-1">
+                <div className="text-left mb-1">
                   <div>1. I'm a Simp </div>
                   <div>2. In the hope I can finally beat Meg in one of the NYT games (even if I created it)</div>
                 </div>

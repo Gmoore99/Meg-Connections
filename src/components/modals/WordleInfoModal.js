@@ -66,7 +66,7 @@ function WordleInfoModal() {
             <AccordionItem value="item-1">
               <AccordionTrigger>Who is She?</AccordionTrigger>
               <AccordionContent>
-                <div>
+                <div className="text-left">
                   <div>1. My super wonderful, smart and beautiful gf</div>
                   <div>2. An insurrerably good NYT game player and enthusiast</div>
                   <div>3. The birthday girl!</div>
@@ -76,7 +76,7 @@ function WordleInfoModal() {
             <AccordionItem value="item-2">
               <AccordionTrigger>Why Did I Put This Together?</AccordionTrigger>
               <AccordionContent>
-                <div className="mb-1">
+                <div className="text-left mb-1">
                   <div>1. I'm a Simp </div>
                   <div>2. In the hope I can finally beat Meg in one of the NYT games (even if I created it)</div>
                 </div>

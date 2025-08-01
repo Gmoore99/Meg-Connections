@@ -6,7 +6,7 @@ import WordleGamesWonModal from "./WordleGamesWonModal";
 import WordleNewGameButton from "./WordleNewGameButton";
 import WordleShareButton from "./WordleShareButton";
 import WordleGameLostModal from "./WordleGameLostModal";
-import InfoModal from "../modals/InfoModal/InfoModal"; // <-- Import your InfoModal
+import InfoModal from "../modals/InfoModal/InfoModal";
 
 // List of words to use, each only once
 const WORD_LIST = ["CANOE", "CLEAT", "PESTO", "ANGEL", "YOUNG", "SORRY", "MAPLE"];
@@ -198,7 +198,7 @@ export default function Wordle() {
     <div className="flex flex-col items-center justify-start min-h-screen bg-black-100 pt-8 px-2">
       {showInfo && (
         <InfoModal
-          initiallyOpen={true}
+          open={showInfo}
           onClose={() => setShowInfo(false)}
         />
       )}
