@@ -31,8 +31,6 @@ export function SolvedWordRow({ ...props }) {
 
   const color = `${DIFFICULTY_COLOR_MAP[props.difficulty]}`;
 
-  const [hasBeenClicked, setHasBeenClicked] = React.useState(false);
-
   const springProps = useSpring({
     from: {
       opacity: 0,
@@ -44,7 +42,7 @@ export function SolvedWordRow({ ...props }) {
     },
     delay: 250,
   });
-  // if there is an image available render it as a popover
+
   const isImageAvailable = props.imageSrc != null;
   return (
     <animated.div style={springProps}>
@@ -59,13 +57,10 @@ export function SolvedWordRow({ ...props }) {
             <div
               className="cursor-pointer shadow-md"
               style={{ backgroundColor: color, borderRadius: 8 }}
-              onClick={() => setHasBeenClicked(true)}
             >
-              {!hasBeenClicked && (
-                <Badge className="pulse-strong animate-pulse absolute top-0 right-0 mr-2 mt-2">
-                  View More
-                </Badge>
-              )}
+              <Badge className="pulse-strong animate-pulse absolute top-0 right-0 mr-2 mt-2">
+                View More
+              </Badge>
               <p className="font-bold pt-2 pl-4 text-gray-900">{props.category}</p>
               <p className="font-thin pb-2 pl-4 text-gray-900">{props.words.join(", ")}</p>
             </div>

@@ -31,7 +31,7 @@ export default function WordleGameLostModal({
     <BaseModal
       title="Game Over!"
       titleClassName="text-center text-xl font-bold"
-      initiallyOpen={open}
+      open={open} // <-- updated to use only the open prop
       showActionButton={false}
       footerElements={[
         <WordleShareButton

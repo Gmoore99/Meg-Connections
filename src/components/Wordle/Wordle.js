@@ -51,6 +51,7 @@ export default function Wordle() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [showResultsModal, setShowResultsModal] = useState(null); // null | "won" | "lost"
 
   // If all words are used, show the "all done" modal
   const allDone = wordIndex >= WORD_LIST.length;
@@ -62,6 +63,7 @@ export default function Wordle() {
     setStatus("playing");
     setShowConfetti(false);
     setIsEndGameModalOpen(false);
+    setShowResultsModal(false);
   }, [wordIndex]);
 
   // Save word index to localStorage whenever it changes
@@ -177,9 +179,11 @@ export default function Wordle() {
       // All words used, increment wordIndex so allDone becomes true
       setWordIndex((idx) => idx + 1);
       setIsEndGameModalOpen(false);
+      setShowResultsModal(false);
       return;
     }
     setWordIndex((idx) => idx + 1);
+    setShowResultsModal(false);
   }
 
   // Listen for info button event from header
@@ -285,6 +289,34 @@ export default function Wordle() {
         answer={answer}
         onNewGame={handlePlayAgain}
       />
+      {(status === "won" || status === "lost") && !showResultsModal && (
+        <div className="flex flex-col items-center mt-6">
+          <button
+            className="px-4 py-2 bg-blue-500 text-white rounded font-bold hover:bg-blue-700"
+            onClick={() => setShowResultsModal(status)}
+          >
+            View Results
+          </button>
+        </div>
+      )}
+      {showResultsModal === "won" && (
+        <WordleGamesWonModal
+          open={true}
+          onClose={() => setShowResultsModal(null)}
+          guesses={guesses}
+          answer={answer}
+          onNewGame={handlePlayAgain}
+        />
+      )}
+      {showResultsModal === "lost" && (
+        <WordleGameLostModal
+          open={true}
+          onClose={() => setShowResultsModal(null)}
+          guesses={guesses}
+          answer={answer}
+          onNewGame={handlePlayAgain}
+        />
+      )}
       {/* Small PNG at bottom center for all screen sizes */}
       {/* <img
         src="https://i.postimg.cc/02nDpNdY/Screenshot-2025-07-28-at-15-12-28.png"

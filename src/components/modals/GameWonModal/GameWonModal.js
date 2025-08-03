@@ -20,7 +20,8 @@ function GameWonModal({ open, onClose, submittedGuesses, onPlayAgain }) {
     <BaseModal
       title={noMoreSets ? "That's All, Come Back Next Year!!" : "You won the game!"}
       titleClassName="text-center text-xl font-bold"
-      initiallyOpen={open}
+      open={open}
+      onClose={onClose}
       footerElements={
         noMoreSets
           ? [

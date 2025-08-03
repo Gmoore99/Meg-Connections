@@ -1,7 +1,7 @@
 import React from "react";
 import BaseModal from "../modals/BaseModal";
 import WordleNewGameButton from "./WordleNewGameButton";
-import WordleShareButton from "./WordleShareButton"; // <-- Make sure this is your purple, sparkly button!
+import WordleShareButton from "./WordleShareButton";
 
 function generateWordleEmojiGrid(guesses, answer) {
   return guesses
@@ -31,7 +31,7 @@ export default function WordleGamesWonModal({
     <BaseModal
       title="You won the Game!"
       titleClassName="text-center text-xl font-bold"
-      initiallyOpen={open}
+      open={open} // <-- Use only the open prop
       showActionButton={false}
       footerElements={[
         <WordleShareButton

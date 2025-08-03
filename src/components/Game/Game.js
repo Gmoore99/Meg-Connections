@@ -31,6 +31,7 @@ function Game() {
   const [gridShake, setGridShake] = React.useState(false);
   const [showConfetti, setShowConfetti] = React.useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [showResultsModal, setShowResultsModal] = useState(false);
 
   // Reset all local state when gameData changes
   React.useEffect(() => {
@@ -151,7 +152,19 @@ function Game() {
             />
           </>
         ) : (
-          <ViewResultsModal onPlayAgain={handlePlayAgain} />
+          <div className="flex flex-col items-center mt-6">
+            <button
+              className="px-4 py-2 bg-blue-500 text-white rounded font-bold hover:bg-blue-700"
+              onClick={() => setShowResultsModal(true)}
+            >
+              View Results
+            </button>
+            <ViewResultsModal
+              open={showResultsModal}
+              onPlayAgain={handlePlayAgain}
+              onClose={() => setShowResultsModal(false)}
+            />
+          </div>
         )}
         {showInfo && (
           <InfoModal

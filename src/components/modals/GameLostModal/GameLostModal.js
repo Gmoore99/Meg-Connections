@@ -20,7 +20,8 @@ function GameLostModal({ open, onClose, onPlayAgain }) {
     <BaseModal
       title={noMoreSets ? "That's All, Come Back Next Year!!" : "You failed your Meg-ducation."}
       titleClassName="text-center text-xl font-bold"
-      initiallyOpen={open}
+      open={open}
+      onClose={onClose}
       footerElements={
         noMoreSets
           ? [

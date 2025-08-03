@@ -53,7 +53,7 @@ function LandingInfoModal({ open, onClose }) {
                       if (onClose) onClose();
                     }}
                   >
-                    Yes, Restart
+                    Yes, Reset
                   </button>
                   <button
                     className="px-4 py-2 bg-gray-300 text-black rounded font-bold hover:bg-gray-400"

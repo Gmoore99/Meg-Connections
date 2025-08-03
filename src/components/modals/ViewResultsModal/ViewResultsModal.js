@@ -7,22 +7,29 @@ import { GameStatusContext } from "../../../providers/GameStatusProvider";
 import { PuzzleDataContext } from "../../../providers/PuzzleDataProvider";
 import Button from "../../ui/button";
 
-function ViewResultsModal({ onPlayAgain }) {
+function ViewResultsModal({ open, onPlayAgain, onClose }) {
   const { submittedGuesses } = React.useContext(GameStatusContext);
   const { gameData } = React.useContext(PuzzleDataContext);
+
+  if (!open) return null;
 
   return (
     <BaseModal
       title="View Results"
       titleClassName="text-center text-3xl font-bold"
-      trigger={
-        <Button variant="submit" className="w-full">View Results</Button>
-      }
-      initiallyOpen={false}
+      open={open}
+      onClose={onClose}
       showActionButton={false}
       footerElements={[
-        <ShareScoreButton key="share" />,
-        <Button key="New-game" onClick={onPlayAgain}>
+        <ShareScoreButton
+          key="share"
+          className="px-4 py-2 bg-fuchsia-400 text-white rounded font-bold hover:bg-fuchsia-600"
+        />,
+        <Button
+          key="New-game"
+          onClick={onPlayAgain}
+          className="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-800"
+        >
           New Game!
         </Button>,
       ]}
