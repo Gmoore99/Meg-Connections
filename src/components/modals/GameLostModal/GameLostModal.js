@@ -34,8 +34,15 @@ function GameLostModal({ open, onClose, onPlayAgain }) {
               </Button>,
             ]
           : [
-              <ShareScoreButton key="share" />,
-              <Button key="New-game" onClick={handlePlayAgain}>
+              <ShareScoreButton
+                key="share"
+                className="px-4 py-2 bg-fuchsia-400 text-white rounded font-bold hover:bg-fuchsia-600"
+              />,
+              <Button
+                key="New-game"
+                onClick={handlePlayAgain}
+                className="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-800"
+              >
                 New Game!
               </Button>,
             ]

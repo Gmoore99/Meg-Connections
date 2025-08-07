@@ -52,6 +52,7 @@ export default function Wordle() {
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
   const [showResultsModal, setShowResultsModal] = useState(null); // null | "won" | "lost"
+  const [invalidGuess, setInvalidGuess] = useState(false);
 
   // If all words are used, show the "all done" modal
   const allDone = wordIndex >= WORD_LIST.length;

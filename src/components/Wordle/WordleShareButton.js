@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import Sparkles from "../Sparkles";
 
-export default function WordleShareButton({ guesses, answer, gamesWon }) {
+export default function WordleShareButton({ guesses, answer, className }) {
   const [copied, setCopied] = useState(false);
 
-  // Generate emoji grid
-  const getEmojiGrid = () => {
+  function generateWordleEmojiGrid(guesses, answer) {
     return guesses
       .map((guess) =>
         guess
@@ -18,30 +16,32 @@ export default function WordleShareButton({ guesses, answer, gamesWon }) {
           .join("")
       )
       .join("\n");
-  };
+  }
 
-  const handleShare = () => {
-    const emojiGrid = getEmojiGrid();
-    // Add blank lines for spacing
-    const guessesLine = `Guesses: ${guesses.length}/6`;
-    const shareText =
-      `Meg's Wordle Game!\n\n` + // Title, then blank line
-      `${emojiGrid}\n\n` +      // Tiles, then blank line
-      `${guessesLine}`;         // Guesses
-    navigator.clipboard.writeText(shareText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+  const handleShare = async () => {
+    const shareText = `Meg's NYT Birthday Wordle\n${generateWordleEmojiGrid(
+      guesses,
+      answer
+    )}\nGuesses: ${guesses.length}/6`;
+
+    try {
+      await navigator.clipboard.writeText(shareText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      alert("Failed to copy!");
+    }
   };
 
   return (
-    <Sparkles>
-      <button
-        className="px-4 py-2 bg-fuchsia-400 text-white rounded font-bold hover:bg-purple-700 mr-2 transition-colors"
-        onClick={handleShare}
-        disabled={guesses.length === 0}
-      >
-        {copied ? "Copied!" : "Share"}
-      </button>
-    </Sparkles>
+    <button
+      className={
+        className ||
+        "px-4 py-2 bg-fuchsia-400 text-white rounded font-bold hover:bg-fuchsia-600"
+      }
+      onClick={handleShare}
+    >
+      {copied ? "Copied!" : "Share"}
+    </button>
   );
 }

@@ -31,7 +31,7 @@ function Game() {
   const [gridShake, setGridShake] = React.useState(false);
   const [showConfetti, setShowConfetti] = React.useState(false);
   const [showInfo, setShowInfo] = useState(false);
-  const [showResultsModal, setShowResultsModal] = useState(false);
+  const [showResultsModal, setShowResultsModal] = useState(null); // null | "won" | "lost"
 
   // Reset all local state when gameData changes
   React.useEffect(() => {
@@ -112,25 +112,27 @@ function Game() {
       </h3>
 
       <div className="game-wrapper mt-16">
-        {isGameOver && isGameWon ? (
+        {isGameOver && isGameWon && !showResultsModal ? (
           <GameWonModal
             open={isEndGameModalOpen}
             onClose={() => setIsEndGameModalOpen(false)}
             submittedGuesses={submittedGuesses}
             onPlayAgain={handlePlayAgain}
           />
-        ) : isGameOver ? (
+        ) : isGameOver && !showResultsModal ? (
           <GameLostModal
             open={isEndGameModalOpen}
             onClose={() => setIsEndGameModalOpen(false)}
             onPlayAgain={handlePlayAgain}
           />
         ) : null}
+
         <GameGrid
           gameRows={shuffledRows}
           shouldGridShake={gridShake}
           setShouldGridShake={setGridShake}
         />
+
         {showConfetti && isGameOver && (
           <div className="grid place-content-center">
             <ConfettiExplosion
@@ -152,19 +154,33 @@ function Game() {
             />
           </>
         ) : (
-          <div className="flex flex-col items-center mt-6">
-            <button
-              className="px-4 py-2 bg-blue-500 text-white rounded font-bold hover:bg-blue-700"
-              onClick={() => setShowResultsModal(true)}
-            >
-              View Results
-            </button>
-            <ViewResultsModal
-              open={showResultsModal}
-              onPlayAgain={handlePlayAgain}
-              onClose={() => setShowResultsModal(false)}
-            />
-          </div>
+          <>
+            {!showResultsModal && (
+              <div className="flex flex-col items-center mt-6">
+                <button
+                  className="px-4 py-2 bg-blue-500 text-white rounded font-bold hover:bg-blue-700"
+                  onClick={() => setShowResultsModal(isGameWon ? "won" : "lost")}
+                >
+                  View Results
+                </button>
+              </div>
+            )}
+            {showResultsModal === "won" && (
+              <GameWonModal
+                open={true}
+                onClose={() => setShowResultsModal(null)}
+                submittedGuesses={submittedGuesses}
+                onPlayAgain={handlePlayAgain}
+              />
+            )}
+            {showResultsModal === "lost" && (
+              <GameLostModal
+                open={true}
+                onClose={() => setShowResultsModal(null)}
+                onPlayAgain={handlePlayAgain}
+              />
+            )}
+          </>
         )}
         {showInfo && (
           <InfoModal
