@@ -83,6 +83,7 @@ function Game() {
         open={true}
         onClose={() => {}}
         onPlayAgain={() => {}}
+        noMoreSets={true} // <-- add this
       />
     );
   }

@@ -9,16 +9,12 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 
-function WordleInfoModal() {
+function WordleInfoModal({ open, onClose }) {
   return (
     <BaseModal
       title=""
-      trigger={
-        <button className="bg-purple-200 text-black w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full">
-          <HelpCircle className="w-6 h-6 sm:w-7 sm:h-7" />
-        </button>
-      }
-      initiallyOpen={false}
+      open={open}
+      onClose={onClose}
       actionButtonText="Got It!"
       actionButtonClassName="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-400"
       footerElements={
@@ -40,13 +36,13 @@ function WordleInfoModal() {
             <AccordionItem value="item-1">
               <AccordionTrigger>What's The Goal?</AccordionTrigger>
               <AccordionContent>
-                Guess the secret Meg-themed five letter word in six tries or less!
+                Guess the Meg-themed five letter word in six tries or less!
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger>How Do I Play?</AccordionTrigger>
               <AccordionContent>
-                Enter a valid five letter word and press Enter. The color of the tiles will change to show how close your guess was to the word.
+                Enter a five letter word and press enter. Unlike the NYT game, the guessed word does not have to be a real word. The color of the tiles will change to show how close your guess was to the word. 
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">

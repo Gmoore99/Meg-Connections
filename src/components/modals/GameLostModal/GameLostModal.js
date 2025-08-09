@@ -6,10 +6,11 @@ import CountdownToNextPuzzle from "../../CountdownToNextPuzzle";
 import Button from "../../ui/button";
 import { PuzzleDataContext } from "../../../providers/PuzzleDataProvider";
 
-function GameLostModal({ open, onClose, onPlayAgain }) {
+function GameLostModal({ open, onClose, onPlayAgain, noMoreSets: propNoMoreSets }) {
   const { gameData } = React.useContext(PuzzleDataContext);
 
-  const noMoreSets = !gameData;
+  // Prefer explicit prop if passed, otherwise fallback to context
+  const noMoreSets = typeof propNoMoreSets === "boolean" ? propNoMoreSets : !gameData;
 
   function handlePlayAgain() {
     if (onPlayAgain) onPlayAgain();
@@ -67,7 +68,7 @@ function GameLostModal({ open, onClose, onPlayAgain }) {
             <p className="font-thin pb-2 pl-4 text-gray-800 text-center">
               You owe Meg dinner & a pint 🤪.
             </p>
-            {gameData.map((obj) => (
+            {gameData && gameData.map((obj) => (
               <SolvedWordRow key={obj.category} {...obj} />
             ))}
           </div>

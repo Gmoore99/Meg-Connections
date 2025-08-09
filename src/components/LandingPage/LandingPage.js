@@ -9,18 +9,20 @@ export default function LandingPage({ onStartConnections, onStartWordle }) {
       <div className="flex flex-col gap-8">
         {/* Info Button above Connections - PNG version */}
         <div className="flex justify-center mb-2">
-          <button
-            className="bg-purple-200 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-full"
-            aria-label="Info"
-            onClick={() => setShowInfo(true)}
-            style={{ padding: 0, border: "none", background: "transparent" }}
-          >
-            <img
-              src="https://i.postimg.cc/02nDpNdY/Screenshot-2025-07-28-at-15-12-28.png"
-              alt=""
-              className="w-14 h-14 sm:w-16 sm:h-16"
-            />
-          </button>
+          <div className="relative">
+            <button
+              className="bg-purple-200 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-full"
+              aria-label="Info"
+              onClick={() => setShowInfo(true)}
+              style={{ padding: 0, border: "none", background: "transparent" }}
+            >
+              <img
+                src="https://i.postimg.cc/02nDpNdY/Screenshot-2025-07-28-at-15-12-28.png"
+                alt=""
+                className="w-14 h-14 sm:w-16 sm:h-16"
+              />
+            </button>
+          </div>
         </div>
         {/* Info Modal (single instance, controlled by showInfo) */}
         <LandingInfoModal
