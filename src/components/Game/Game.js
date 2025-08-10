@@ -12,7 +12,6 @@ import GameControlButtonsPanel from "../GameControlButtonsPanel";
 import ViewResultsModal from "../modals/ViewResultsModal";
 import { getNextGame, ALL_CATEGORIES } from "../../lib/data";
 import InfoModal from "../modals/InfoModal/InfoModal";
-import NoMoreSetsModal from "../modals/NoMoreSetsModal";
 
 function Game() {
   const {
