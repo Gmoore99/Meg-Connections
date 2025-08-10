@@ -36,7 +36,8 @@
     "predev": "rimraf .parcel-cache dist",
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html",
-    "nc": "new-component"
+    "nc": "new-component",
+    "start": "parcel src/index.html"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
