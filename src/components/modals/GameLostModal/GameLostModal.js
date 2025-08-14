@@ -6,20 +6,14 @@ import CountdownToNextPuzzle from "../../CountdownToNextPuzzle";
 import Button from "../../ui/button";
 import { PuzzleDataContext } from "../../../providers/PuzzleDataProvider";
 
-function GameLostModal({ open, onClose, onPlayAgain, setActiveGame, noMoreSets: propNoMoreSets }) {
+function GameLostModal({ open, onClose, onPlayAgain }) {
   const { gameData } = React.useContext(PuzzleDataContext);
 
-  // Prefer explicit prop if passed, otherwise fallback to context
-  const noMoreSets = typeof propNoMoreSets === "boolean" ? propNoMoreSets : !gameData;
+  const noMoreSets = !gameData;
 
   function handlePlayAgain() {
-    if (noMoreSets) {
-      if (setActiveGame) setActiveGame(null); // Go to landing page
-      if (onClose) onClose();
-    } else {
-      if (onPlayAgain) onPlayAgain();
-      if (onClose) onClose();
-    }
+    if (onPlayAgain) onPlayAgain();
+    if (onClose) onClose();
   }
 
   return (
@@ -33,7 +27,7 @@ function GameLostModal({ open, onClose, onPlayAgain, setActiveGame, noMoreSets: 
           ? [
               <Button
                 key="home"
-                onClick={handlePlayAgain}
+                onClick={() => (window.location.href = "/")}
                 className="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-800"
               >
                 Home
@@ -73,7 +67,7 @@ function GameLostModal({ open, onClose, onPlayAgain, setActiveGame, noMoreSets: 
             <p className="font-thin pb-2 pl-4 text-gray-800 text-center">
               You owe Meg dinner & a pint 🤪.
             </p>
-            {gameData && gameData.map((obj) => (
+            {gameData.map((obj) => (
               <SolvedWordRow key={obj.category} {...obj} />
             ))}
           </div>

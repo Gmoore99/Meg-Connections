@@ -13,7 +13,7 @@ import ViewResultsModal from "../modals/ViewResultsModal";
 import { getNextGame } from "../../lib/data";
 import InfoModal from "../modals/InfoModal/InfoModal";
 
-function Game({ setActiveGame }) {
+function Game() {
   const {
     resetGameStatus,
     solvedGameData,
@@ -83,7 +83,6 @@ function Game({ setActiveGame }) {
         open={true}
         onClose={() => {}}
         onPlayAgain={() => {}}
-        noMoreSets={true} // <-- add this
       />
     );
   }
@@ -119,14 +118,12 @@ function Game({ setActiveGame }) {
             onClose={() => setIsEndGameModalOpen(false)}
             submittedGuesses={submittedGuesses}
             onPlayAgain={handlePlayAgain}
-            setActiveGame={setActiveGame}
           />
         ) : isGameOver && !showResultsModal ? (
           <GameLostModal
             open={isEndGameModalOpen}
             onClose={() => setIsEndGameModalOpen(false)}
             onPlayAgain={handlePlayAgain}
-            setActiveGame={setActiveGame}
           />
         ) : null}
 
@@ -174,7 +171,6 @@ function Game({ setActiveGame }) {
                 onClose={() => setShowResultsModal(null)}
                 submittedGuesses={submittedGuesses}
                 onPlayAgain={handlePlayAgain}
-                setActiveGame={setActiveGame}
               />
             )}
             {showResultsModal === "lost" && (
@@ -182,7 +178,6 @@ function Game({ setActiveGame }) {
                 open={true}
                 onClose={() => setShowResultsModal(null)}
                 onPlayAgain={handlePlayAgain}
-                setActiveGame={setActiveGame}
               />
             )}
           </>

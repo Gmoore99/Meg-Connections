@@ -6,7 +6,7 @@ export const ALL_CATEGORIES = [
     category: "Meg Pub Core",
     words: ["Neck Oil", "Last Call", "Night Bus", "Chicken Goujons"],
     difficulty: 1,
-    imageSrc: "https://i.postimg.cc/WzB8vgBC/Screenshot-2025-08-09-at-13-56-51.png",
+    imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
   {
     category: "Meg's Dislikes",
@@ -24,19 +24,19 @@ export const ALL_CATEGORIES = [
     category: "Words that Contain m-e-g",
     words: ["Emergency", "Manage", "Game", "Image"],
     difficulty: 4,
-    imageSrc: "https://i.postimg.cc/zvT9gzFL/Screenshot-2025-08-09-at-14-38-38.png",
+    imageSrc: "https://i.postimg.cc/C5dMDVyS/Screenshot-2025-07-31-at-21-13-06.png",
   },
   {
     category: "When people might tell Meg to slow down",
     words: ["Running", "Eating", "Walking", "Public Speaking"],
     difficulty: 1,
-    imageSrc: "https://i.postimg.cc/L5y8G3GB/Screenshot-2025-08-09-at-14-32-42.png",
+    imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
   {
     category: "Things Typically Found in Megs Bag",
     words: ["Portable Charger", "Sweater", "Water Bottle", "Frisbee"],
     difficulty: 2,
-    imageSrc: "https://i.postimg.cc/cLxv96jc/Screenshot-2025-08-09-at-14-17-13.png",
+    imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
   {
     category: "Meg's Halloween Costumes",
@@ -48,7 +48,7 @@ export const ALL_CATEGORIES = [
     category: "Words Used in Meg's Spotify Day List",
     words: ["Doof Doof Rave", "Iconic", "Brat", "Granola"],
     difficulty: 4,
-    imageSrc: "https://i.postimg.cc/mZtmPggh/Screenshot-2025-08-09-at-13-46-11.png",
+    imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
   {
     category: "Meg's Favourite Snacks",
@@ -66,7 +66,7 @@ export const ALL_CATEGORIES = [
     category: "Things Meg Might Text You",
     words: ["Hi Angel!", "ILY!", "🤠❤️", "!!!!!!!!"],
     difficulty: 3,
-    imageSrc: "https://i.postimg.cc/zvYCV8fP/Screenshot-2025-08-09-at-14-28-33.png",
+    imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   },
   {
     category: "Little Miss Characters Meg Identifies With",
@@ -90,7 +90,7 @@ export const ALL_CATEGORIES = [
     category: "Meg's Love Languages",
     words: ["Memes", "Unexpected Hugs", "Sharing Food", "Quality Time"],
     difficulty: 3,
-    imageSrc: "https://i.postimg.cc/hjT4Pq6j/Screenshot-2025-08-09-at-14-19-12.png",
+    imageSrc: "https://i.postimg.cc/bvDdChGw/Screenshot-2025-08-07-at-21-25-20.png",
   },
   {
     category: "Types of Gravy",
@@ -120,7 +120,7 @@ export const ALL_CATEGORIES = [
     category: "MEGa __",
     words: ["Byte", "Watt", "Phone", "Star"],
     difficulty: 4,
-    imageSrc: "https://i.postimg.cc/1X301M7v/Screenshot-2025-08-09-at-14-05-34.png",
+    imageSrc: "https://i.postimg.cc/gj0s7kNx/Screenshot-2025-07-06-at-11-37-27.png",
   }
 ]; // <-- This closes the ALL_CATEGORIES array!
 

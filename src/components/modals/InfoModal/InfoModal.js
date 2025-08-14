@@ -70,7 +70,7 @@ function InfoModal({ open, onClose }) {
               <AccordionContent>
                 <div className="text-left">
                   <div>1. My super wonderful, smart and beautiful gf</div>
-                  <div>2. An annoyingly good NYT game player and enthusiast</div>
+                  <div>2. An insurrerably good NYT game player and enthusiast</div>
                   <div>3. The birthday girl!</div>
                 </div>
               </AccordionContent>

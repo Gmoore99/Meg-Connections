@@ -9,12 +9,16 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 
-function WordleInfoModal({ open, onClose }) {
+function WordleInfoModal() {
   return (
     <BaseModal
       title=""
-      open={open}
-      onClose={onClose}
+      trigger={
+        <button className="bg-purple-200 text-black w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full">
+          <HelpCircle className="w-6 h-6 sm:w-7 sm:h-7" />
+        </button>
+      }
+      initiallyOpen={false}
       actionButtonText="Got It!"
       actionButtonClassName="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-400"
       footerElements={
@@ -36,13 +40,13 @@ function WordleInfoModal({ open, onClose }) {
             <AccordionItem value="item-1">
               <AccordionTrigger>What's The Goal?</AccordionTrigger>
               <AccordionContent>
-                Guess the Meg-themed five letter word in six tries or less!
+                Guess the secret Meg-themed five letter word in six tries or less!
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger>How Do I Play?</AccordionTrigger>
               <AccordionContent>
-                Enter a five letter word and press enter. Unlike the NYT game, the guessed word does not have to be a real word. The color of the tiles will change to show how close your guess was to the word. 
+                Enter a valid five letter word and press Enter. The color of the tiles will change to show how close your guess was to the word.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
@@ -64,7 +68,7 @@ function WordleInfoModal({ open, onClose }) {
               <AccordionContent>
                 <div className="text-left">
                   <div>1. My super wonderful, smart and beautiful gf</div>
-                  <div>2. An annoyingly good NYT game player and enthusiast</div>
+                  <div>2. An insufferably good NYT game player and enthusiast</div>
                   <div>3. The birthday girl!</div>
                 </div>
               </AccordionContent>
