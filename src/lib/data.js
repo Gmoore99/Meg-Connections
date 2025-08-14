@@ -11,13 +11,13 @@ export const ALL_CATEGORIES = [
   {
     category: "Meg's Dislikes",
     words: ["Blue Cheese", "Early Mornings", "Dark Chocolate", "Slow Walkers"],
-    difficulty: 2,
+    difficulty: 3,
     imageSrc: "https://i.postimg.cc/yNzTBvFB/Screenshot-2025-08-07-at-21-14-45.png",
   },
   {
     category: "Canoe Camp Core",
     words: ["50 Days", "Ghouling", "Loon", "Trench Foot"],
-    difficulty: 3,
+    difficulty: 2,
     imageSrc: "https://i.postimg.cc/DmkT59bR/Screenshot-2025-08-07-at-21-02-48.png",
   },
   {
@@ -29,19 +29,19 @@ export const ALL_CATEGORIES = [
   {
     category: "When people might tell Meg to slow down",
     words: ["Running", "Eating", "Walking", "Public Speaking"],
-    difficulty: 3,
+    difficulty: 1,
     imageSrc: "https://i.postimg.cc/L5y8G3GB/Screenshot-2025-08-09-at-14-32-42.png",
   },
   {
     category: "Things Typically Found in Megs Bag",
     words: ["Portable Charger", "Sweater", "Water Bottle", "Frisbee"],
-    difficulty: 1,
+    difficulty: 2,
     imageSrc: "https://i.postimg.cc/cLxv96jc/Screenshot-2025-08-09-at-14-17-13.png",
   },
   {
     category: "Meg's Halloween Costumes",
     words: ["Avril Levine", "Lion", "Bunny", "KISS"],
-    difficulty: 2,
+    difficulty: 3,
     imageSrc: "https://i.postimg.cc/CLqSV7SP/Screenshot-2025-07-31-at-22-01-49.png",
   },
   {
@@ -83,13 +83,13 @@ export const ALL_CATEGORIES = [
   {
     category: "Hammersmith FC Accolades",
     words: ["Players Player", "Captain", "Clubwoman", "Joker"],
-    difficulty: 3,
+    difficulty: 2,
     imageSrc: "https://i.postimg.cc/kGych8V9/Screenshot-2025-08-07-at-20-52-41.png",
   },
   {
     category: "Meg's Love Languages",
     words: ["Memes", "Unexpected Hugs", "Sharing Food", "Quality Time"],
-    difficulty: 2,
+    difficulty: 3,
     imageSrc: "https://i.postimg.cc/hjT4Pq6j/Screenshot-2025-08-09-at-14-19-12.png",
   },
   {
@@ -105,7 +105,7 @@ export const ALL_CATEGORIES = [
     imageSrc: "https://i.postimg.cc/BQnS70kf/Screenshot-2025-08-07-at-21-29-47.png",
   },
   {
-    category: "Rouge Things Meg's Very Knowledgeable on",
+    category: "Things Meg's Weirdly Knowledgeable on",
     words: ["Harry Potter", "Train Timetables", "Model UN", "Heat Pumps"],
     difficulty: 2,
     imageSrc: "https://i.postimg.cc/j2GMfKJn/Screenshot-2025-08-07-at-21-37-12.png",
@@ -135,8 +135,8 @@ export const CATEGORY_SETS = [
   [
     ALL_CATEGORIES.find(cat => cat.category === "When people might tell Meg to slow down"),
     ALL_CATEGORIES.find(cat => cat.category === "Meg's Halloween Costumes"),
-    ALL_CATEGORIES.find(cat => cat.category === "Things Typically Found in Megs Bag"),
-    ALL_CATEGORIES.find(cat => cat.category === "Words Used in Meg's Spotify Day List"),
+    ALL_CATEGORIES.find(cat => cat.category === "Canoe Camp Core"),
+    ALL_CATEGORIES.find(cat => cat.category === "Words that Contain m-e-g"),
   ],
   [
     ALL_CATEGORIES.find(cat => cat.category === "Ingredients in Meg's Pesto Pasta"),
@@ -146,13 +146,13 @@ export const CATEGORY_SETS = [
   ],
   [
     ALL_CATEGORIES.find(cat => cat.category === "Meg Pub Core"),
-    ALL_CATEGORIES.find(cat => cat.category === "Canoe Camp Core"),
+    ALL_CATEGORIES.find(cat => cat.category === "Things Typically Found in Megs Bag"),
     ALL_CATEGORIES.find(cat => cat.category === "Meg's Dislikes"),
-    ALL_CATEGORIES.find(cat => cat.category === "Words that Contain m-e-g"),
+    ALL_CATEGORIES.find(cat => cat.category === "Words Used in Meg's Spotify Day List"),
   ],
   [
     ALL_CATEGORIES.find(cat => cat.category === "Things The Scare Meg"),
-    ALL_CATEGORIES.find(cat => cat.category === "Rouge Things Meg's Very Knowledgeable on"),
+    ALL_CATEGORIES.find(cat => cat.category === "Things Meg's Weirdly Knowledgeable on"),
     ALL_CATEGORIES.find(cat => cat.category === "Homophones for Megs Friends"),
     ALL_CATEGORIES.find(cat => cat.category === "MEGa __"),
   ],

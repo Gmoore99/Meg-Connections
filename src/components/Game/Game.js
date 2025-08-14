@@ -10,10 +10,10 @@ import { PuzzleDataContext } from "../../providers/PuzzleDataProvider";
 import { GameStatusContext } from "../../providers/GameStatusProvider";
 import GameControlButtonsPanel from "../GameControlButtonsPanel";
 import ViewResultsModal from "../modals/ViewResultsModal";
-import { getNextGame, ALL_CATEGORIES } from "../../lib/data";
+import { getNextGame } from "../../lib/data";
 import InfoModal from "../modals/InfoModal/InfoModal";
 
-function Game() {
+function Game({ setActiveGame }) {
   const {
     resetGameStatus,
     solvedGameData,
@@ -32,8 +32,6 @@ function Game() {
   const [showConfetti, setShowConfetti] = React.useState(false);
   const [showInfo, setShowInfo] = useState(false);
   const [showResultsModal, setShowResultsModal] = useState(null); // null | "won" | "lost"
-  const [setIndex, setSetIndex] = useState(0);
-  const [showNoMoreSetsModal, setShowNoMoreSetsModal] = useState(false);
 
   // Reset all local state when gameData changes
   React.useEffect(() => {
@@ -45,12 +43,12 @@ function Game() {
 
   // Update Game Grid after a row has been correctly solved
   React.useEffect(() => {
-    if (!gameData || !Array.isArray(gameData)) return;
+    if (!gameData) return;
     const categoriesToRemoveFromRows = solvedGameData.map(
       (data) => data.category
     );
     const dataLeftForRows = gameData.filter((data) => {
-      return data && !categoriesToRemoveFromRows.includes(data.category);
+      return !categoriesToRemoveFromRows.includes(data.category);
     });
     if (dataLeftForRows.length > 0) {
       setShuffledRows(shuffleGameData({ gameData: dataLeftForRows }));
@@ -71,25 +69,24 @@ function Game() {
     return () => window.clearTimeout(delayModalOpen);
   }, [isGameOver, isGameWon]);
 
-  // Check if all sets are done
-  const allDone = setIndex >= ALL_CATEGORIES.length;
-
   function handlePlayAgain() {
-    // If we're currently on the last set, show the modal
-    if (setIndex === ALL_CATEGORIES.length - 1) {
-      setShowNoMoreSetsModal(true);
-      setIsEndGameModalOpen(false);
-      setShowResultsModal(false);
-      return;
-    }
     resetGameStatus();
-    setSetIndex(setIndex + 1);
     loadNextGame();
-    setIsEndGameModalOpen(false);
-    setShowResultsModal(false);
   }
 
   const { gameData: contextGameData } = React.useContext(PuzzleDataContext);
+
+  if (!contextGameData) {
+    // Always show the modal when there are no more sets
+    return (
+      <GameLostModal
+        open={true}
+        onClose={() => {}}
+        onPlayAgain={() => {}}
+        noMoreSets={true} // <-- add this
+      />
+    );
+  }
 
   // Always allow info modal to open by resetting showInfo on close
   useEffect(() => {
@@ -122,12 +119,14 @@ function Game() {
             onClose={() => setIsEndGameModalOpen(false)}
             submittedGuesses={submittedGuesses}
             onPlayAgain={handlePlayAgain}
+            setActiveGame={setActiveGame}
           />
         ) : isGameOver && !showResultsModal ? (
           <GameLostModal
             open={isEndGameModalOpen}
             onClose={() => setIsEndGameModalOpen(false)}
             onPlayAgain={handlePlayAgain}
+            setActiveGame={setActiveGame}
           />
         ) : null}
 
@@ -175,6 +174,7 @@ function Game() {
                 onClose={() => setShowResultsModal(null)}
                 submittedGuesses={submittedGuesses}
                 onPlayAgain={handlePlayAgain}
+                setActiveGame={setActiveGame}
               />
             )}
             {showResultsModal === "lost" && (
@@ -182,6 +182,7 @@ function Game() {
                 open={true}
                 onClose={() => setShowResultsModal(null)}
                 onPlayAgain={handlePlayAgain}
+                setActiveGame={setActiveGame}
               />
             )}
           </>
@@ -190,12 +191,6 @@ function Game() {
           <InfoModal
             open={showInfo}
             onClose={() => setShowInfo(false)}
-          />
-        )}
-        {showNoMoreSetsModal && (
-          <NoMoreSetsModal
-            open={true}
-            onClose={() => setShowNoMoreSetsModal(false)}
           />
         )}
       </div>

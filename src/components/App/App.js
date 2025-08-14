@@ -22,7 +22,7 @@ function App() {
               onStartWordle={() => setActiveGame("wordle")}
             />
           )}
-          {activeGame === "connections" && <Game />}
+          {activeGame === "connections" && <Game setActiveGame={setActiveGame} />}
           {activeGame === "wordle" && <Wordle />}
         </div>
       </GameStatusProvider>

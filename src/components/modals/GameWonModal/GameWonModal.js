@@ -6,14 +6,19 @@ import CountdownToNextPuzzle from "../../CountdownToNextPuzzle";
 import { PuzzleDataContext } from "../../../providers/PuzzleDataProvider";
 import Button from "../../ui/button";
 
-function GameWonModal({ open, onClose, submittedGuesses, onPlayAgain }) {
+function GameWonModal({ open, onClose, submittedGuesses, onPlayAgain, setActiveGame }) {
   const { gameData } = React.useContext(PuzzleDataContext);
 
   const noMoreSets = !gameData;
 
   function handlePlayAgain() {
-    if (onPlayAgain) onPlayAgain();
-    if (onClose) onClose();
+    if (noMoreSets) {
+      if (setActiveGame) setActiveGame(null); // Go to landing page
+      if (onClose) onClose();
+    } else {
+      if (onPlayAgain) onPlayAgain();
+      if (onClose) onClose();
+    }
   }
 
   return (
@@ -27,7 +32,7 @@ function GameWonModal({ open, onClose, submittedGuesses, onPlayAgain }) {
           ? [
               <Button
                 key="home"
-                onClick={() => (window.location.href = "/")}
+                onClick={handlePlayAgain}
                 className="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-800"
               >
                 Home
