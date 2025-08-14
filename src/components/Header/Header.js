@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import InfoModal from "../modals/InfoModal/InfoModal";
+import WordleInfoModal from "../modals/WordleInfoModal";
 
 function Header({ activeGame }) {
   let title = "Meg's Birthday Games!!! 🥳❤️";
@@ -9,6 +11,14 @@ function Header({ activeGame }) {
   const showInfoButton = activeGame === "connections" || activeGame === "wordle";
   const [showInfo, setShowInfo] = useState(false);
 
+  function handleInfoClick() {
+    setShowInfo(true);
+  }
+
+  function handleClose() {
+    setShowInfo(false);
+  }
+
   return (
     <header className="relative flex flex-col items-center w-full">
       {showInfoButton && (
@@ -16,13 +26,7 @@ function Header({ activeGame }) {
           <button
             type="button"
             className="bg-transparent border-none p-0 cursor-pointer flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10"
-            onClick={() => {
-              if (activeGame === "wordle") {
-                document.dispatchEvent(new CustomEvent("openWordleInfoModal"));
-              } else {
-                document.dispatchEvent(new CustomEvent("openInfoModal"));
-              }
-            }}
+            onClick={handleInfoClick}
           >
             <img
               src="https://i.postimg.cc/02nDpNdY/Screenshot-2025-07-28-at-15-12-28.png"
@@ -38,6 +42,13 @@ function Header({ activeGame }) {
         </h1>
       </div>
       <div className="w-full border-b-2 border-gray-300 mb-4"></div>
+      {/* Show the correct info modal */}
+      {activeGame === "connections" && (
+        <InfoModal open={showInfo} onClose={handleClose} />
+      )}
+      {activeGame === "wordle" && (
+        <WordleInfoModal open={showInfo} onClose={handleClose} />
+      )}
     </header>
   );
 }
