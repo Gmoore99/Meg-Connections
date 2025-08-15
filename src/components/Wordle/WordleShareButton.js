@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import { useToast } from "../ui/use-toast"; // Adjust the import path if needed
 
 export default function WordleShareButton({ guesses, answer, className }) {
-  const [copied, setCopied] = useState(false);
+  const { toast } = useToast();
 
   function generateWordleEmojiGrid(guesses, answer) {
     return guesses
@@ -18,18 +19,34 @@ export default function WordleShareButton({ guesses, answer, className }) {
       .join("\n");
   }
 
+  function isMobile() {
+    return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
+  }
+
   const handleShare = async () => {
     const shareText = `Meg's Birthday Wordle!!\n\n${generateWordleEmojiGrid(
       guesses,
       answer
     )}\n\nGuesses: ${guesses.length}/6`;
 
-    try {
+    if (navigator.share && isMobile()) {
+      try {
+        await navigator.share({ text: shareText });
+      } catch (err) {
+        await navigator.clipboard.writeText(shareText);
+        toast({
+          label: "Notification",
+          title: "",
+          description: "Copied to clipboard!",
+        });
+      }
+    } else {
       await navigator.clipboard.writeText(shareText);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      alert("Failed to copy!");
+      toast({
+        label: "Notification",
+        title: "",
+        description: "Copied to clipboard!",
+      });
     }
   };
 
@@ -41,7 +58,7 @@ export default function WordleShareButton({ guesses, answer, className }) {
       }
       onClick={handleShare}
     >
-      {copied ? "Copied!" : "Share"}
+      Share
     </button>
   );
 }
