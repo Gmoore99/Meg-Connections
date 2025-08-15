@@ -23,10 +23,10 @@ function WordRow({ words }) {
 
 export function SolvedWordRow({ ...props }) {
   const DIFFICULTY_COLOR_MAP = {
-    1: "rgb(74 222 128)", // green
-    2: "rgb(251 191 36)", // amber
-    3: "rgb(129 140 248)", //indigo
-    4: "rgb(34 211 238)", //cyan
+    1: "rgb(251 191 36)", // amber
+    2: "rgb(74 222 128)", // green
+    3: "rgb(34 211 238)", //cyan
+    4: "rgb(129 140 248)", //indigo
   };
 
   const color = `${DIFFICULTY_COLOR_MAP[props.difficulty]}`;
@@ -67,7 +67,10 @@ export function SolvedWordRow({ ...props }) {
           </PopoverTrigger>
           <PopoverContent>
             <div>
-              <img src={props.imageSrc} />
+              <img
+                src={props.imageSrc}
+                // Removed width, maxWidth, and minWidth styles for natural image size
+              />
             </div>
           </PopoverContent>
         </Popover>

@@ -12,6 +12,12 @@ function GameLostModal({ open, onClose, onPlayAgain }) {
   const noMoreSets = !gameData;
 
   function handlePlayAgain() {
+    if (noMoreSets) {
+      // Optionally, redirect to landing page:
+      // window.location.href = "/";
+      // Or just do nothing, modal stays open
+      return;
+    }
     if (onPlayAgain) onPlayAgain();
     if (onClose) onClose();
   }

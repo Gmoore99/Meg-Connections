@@ -19,10 +19,10 @@ export default function WordleShareButton({ guesses, answer, className }) {
   }
 
   const handleShare = async () => {
-    const shareText = `Meg's NYT Birthday Wordle\n${generateWordleEmojiGrid(
+    const shareText = `Meg's Birthday Wordle!!\n\n${generateWordleEmojiGrid(
       guesses,
       answer
-    )}\nGuesses: ${guesses.length}/6`;
+    )}\n\nGuesses: ${guesses.length}/6`;
 
     try {
       await navigator.clipboard.writeText(shareText);

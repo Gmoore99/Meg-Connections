@@ -9,7 +9,7 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 
-function WordleInfoModal() {
+function WordleInfoModal({ open, onClose }) {
   return (
     <BaseModal
       title=""
@@ -29,6 +29,8 @@ function WordleInfoModal() {
           Home
         </button>
       }
+      open={open}
+      onClose={onClose}
     >
       <Tabs defaultValue="how-to-play">
         <TabsList className="grid w-full grid-cols-2">
@@ -46,7 +48,7 @@ function WordleInfoModal() {
             <AccordionItem value="item-2">
               <AccordionTrigger>How Do I Play?</AccordionTrigger>
               <AccordionContent>
-                Enter a valid five letter word and press Enter. The color of the tiles will change to show how close your guess was to the word.
+                Enter a five letter word and press Enter. The color of the tiles will change to show how close your guess was to the word. Unlike the NYT Wordle, your guess does NOT have to be a valid word.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
@@ -68,7 +70,7 @@ function WordleInfoModal() {
               <AccordionContent>
                 <div className="text-left">
                   <div>1. My super wonderful, smart and beautiful gf</div>
-                  <div>2. An insufferably good NYT game player and enthusiast</div>
+                  <div>2. An annoyingly good NYT game player and enthusiast</div>
                   <div>3. The birthday girl!</div>
                 </div>
               </AccordionContent>

@@ -6,8 +6,6 @@ import WordleGamesWonModal from "./WordleGamesWonModal";
 import WordleNewGameButton from "./WordleNewGameButton";
 import WordleShareButton from "./WordleShareButton";
 import WordleGameLostModal from "./WordleGameLostModal";
-import InfoModal from "../modals/InfoModal/InfoModal";
-import WordleInfoModal from "../modals/WordleInfoModal";
 
 // List of words to use, each only once
 const WORD_LIST = ["CANOE", "CLEAT", "PESTO", "ANGEL", "YOUNG", "SORRY", "MAPLE"];
@@ -203,7 +201,7 @@ export default function Wordle() {
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-black-100 pt-8 px-2">
       {showConfetti && <Confetti width={window.innerWidth} height={window.innerHeight} />}
-      <h2 className="text-xl sm:text-4xl font-bold mb-2 text-white text-center">Meg's NYT Birthday Wordle</h2>
+      <h2 className="text-xl sm:text-4xl font-bold mb-2 text-white text-center">Meg's Birthday Wordle!!</h2>
       <div className="flex flex-col gap-2 mb-6 w-full max-w-[380px] sm:max-w-md mx-auto">
         {[...Array(6)].map((_, i) => {
           const guess =
@@ -313,7 +311,6 @@ export default function Wordle() {
           onNewGame={handlePlayAgain}
         />
       )}
-      <WordleInfoModal open={showInfo} onClose={() => setShowInfo(false)} />
       {/* Small PNG at bottom center for all screen sizes */}
       {/* <img
         src="https://i.postimg.cc/02nDpNdY/Screenshot-2025-07-28-at-15-12-28.png"

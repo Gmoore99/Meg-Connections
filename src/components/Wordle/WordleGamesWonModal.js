@@ -18,6 +18,17 @@ function generateWordleEmojiGrid(guesses, answer) {
     .join("\n");
 }
 
+function handlePlayAgain() {
+  if (noMoreSets) {
+    // Optionally, redirect to landing page:
+    // window.location.href = "/";
+    // Or just do nothing, modal stays open
+    return;
+  }
+  if (onPlayAgain) onPlayAgain();
+  if (onClose) onClose();
+}
+
 export default function WordleGamesWonModal({
   open,
   onClose,

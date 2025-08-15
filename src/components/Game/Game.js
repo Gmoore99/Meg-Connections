@@ -87,13 +87,6 @@ function Game() {
     );
   }
 
-  // Always allow info modal to open by resetting showInfo on close
-  useEffect(() => {
-    const handler = () => setShowInfo(true);
-    document.addEventListener("openInfoModal", handler);
-    return () => document.removeEventListener("openInfoModal", handler);
-  }, []);
-
   // When user submits a guess:
   const handleSubmitGuess = (guess) => {
     // ...your guess logic...
@@ -181,12 +174,6 @@ function Game() {
               />
             )}
           </>
-        )}
-        {showInfo && (
-          <InfoModal
-            open={showInfo}
-            onClose={() => setShowInfo(false)}
-          />
         )}
       </div>
     </>

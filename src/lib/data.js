@@ -5,7 +5,7 @@ export const ALL_CATEGORIES = [
   {
     category: "Meg Pub Core",
     words: ["Neck Oil", "Last Call", "Night Bus", "Chicken Goujons"],
-    difficulty: 1,
+    difficulty: 3,
     imageSrc: "https://i.postimg.cc/WzB8vgBC/Screenshot-2025-08-09-at-13-56-51.png",
   },
   {
@@ -17,7 +17,7 @@ export const ALL_CATEGORIES = [
   {
     category: "Canoe Camp Core",
     words: ["50 Days", "Ghouling", "Loon", "Trench Foot"],
-    difficulty: 2,
+    difficulty: 3,
     imageSrc: "https://i.postimg.cc/DmkT59bR/Screenshot-2025-08-07-at-21-02-48.png",
   },
   {
@@ -35,13 +35,13 @@ export const ALL_CATEGORIES = [
   {
     category: "Things Typically Found in Megs Bag",
     words: ["Portable Charger", "Sweater", "Water Bottle", "Frisbee"],
-    difficulty: 2,
+    difficulty: 1,
     imageSrc: "https://i.postimg.cc/cLxv96jc/Screenshot-2025-08-09-at-14-17-13.png",
   },
   {
     category: "Meg's Halloween Costumes",
     words: ["Avril Levine", "Lion", "Bunny", "KISS"],
-    difficulty: 3,
+    difficulty: 2,
     imageSrc: "https://i.postimg.cc/CLqSV7SP/Screenshot-2025-07-31-at-22-01-49.png",
   },
   {
@@ -53,13 +53,13 @@ export const ALL_CATEGORIES = [
   {
     category: "Meg's Favourite Snacks",
     words: ["Chocolate", "Cookie Dough Ice Cream", "Vege Plate", "Beef Jerky"],
-    difficulty: 1,
+    difficulty: 2,
     imageSrc: "https://i.postimg.cc/BQXtP2sH/Screenshot-2025-07-31-at-21-06-29.png",
   },
   {
     category: "Famous Megs",
     words: ["Fox", "Atron", "Thee Stalion", "Markle"],
-    difficulty: 2,
+    difficulty: 1,
     imageSrc: "https://i.postimg.cc/Jnp4Gz2p/Screenshot-2025-07-31-at-21-08-37.png",
   },
   {
@@ -83,13 +83,13 @@ export const ALL_CATEGORIES = [
   {
     category: "Hammersmith FC Accolades",
     words: ["Players Player", "Captain", "Clubwoman", "Joker"],
-    difficulty: 2,
+    difficulty: 3,
     imageSrc: "https://i.postimg.cc/kGych8V9/Screenshot-2025-08-07-at-20-52-41.png",
   },
   {
     category: "Meg's Love Languages",
     words: ["Memes", "Unexpected Hugs", "Sharing Food", "Quality Time"],
-    difficulty: 3,
+    difficulty: 2,
     imageSrc: "https://i.postimg.cc/hjT4Pq6j/Screenshot-2025-08-09-at-14-19-12.png",
   },
   {
@@ -105,7 +105,7 @@ export const ALL_CATEGORIES = [
     imageSrc: "https://i.postimg.cc/BQnS70kf/Screenshot-2025-08-07-at-21-29-47.png",
   },
   {
-    category: "Things Meg's Very Knowledgeable on",
+    category: "Random Things Meg's Very Knowledgeable on",
     words: ["Harry Potter", "Train Timetables", "Model UN", "Heat Pumps"],
     difficulty: 2,
     imageSrc: "https://i.postimg.cc/j2GMfKJn/Screenshot-2025-08-07-at-21-37-12.png",
@@ -152,7 +152,7 @@ export const CATEGORY_SETS = [
   ],
   [
     ALL_CATEGORIES.find(cat => cat.category === "Things The Scare Meg"),
-    ALL_CATEGORIES.find(cat => cat.category === "Things Meg's Very Knowledgeable on"),
+    ALL_CATEGORIES.find(cat => cat.category === "Random Things Meg's Very Knowledgeable on"),
     ALL_CATEGORIES.find(cat => cat.category === "Homophones for Megs Friends"),
     ALL_CATEGORIES.find(cat => cat.category === "MEGa __"),
   ],
